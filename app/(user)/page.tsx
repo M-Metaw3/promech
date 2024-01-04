@@ -148,7 +148,7 @@ const page = async() => {
 					<Grid container columnSpacing={2} rowGap={2} alignItems='center' justifyContent='space-between' zIndex={1}>
 						<Grid item xs={12} md={7} display='flex' flexDirection='column' gap={2} alignItems='flex-start'>
 							<Typography variant='h3' component='div' typography={{ xs: 'h4', md: 'h3' }} fontWeight={'600 !important'} fontFamily={fonts.poppins} lineHeight='normal !important' sx={{ wordSpacing: 2 }}>
-								Empowering the next generation of sustainable manufacturers.
+								{/* Empowering the next generation of sustainable manufacturers. */}
 							</Typography>
 							<Stack gap={0.5}>
 								<Typography lineHeight={2} fontSize='18px' maxWidth={600}>
