@@ -112,7 +112,7 @@
       
 //             // Make the axios request with the token in the headers
 //             const response = await axios.post(
-//               'http://localhost:1337/api/bookings',
+//               'https://promecha.onrender.com/api/bookings',
 //               {
 //                 data: { user: token.user.id, course: id, primarykey },
 //               },
@@ -156,13 +156,13 @@
 //                     <Stack gap='20px'>
 //                         <Typography variant='h4' fontWeight={700}>{course.title}</Typography>
 //                         <Stack direction='row' gap={2} alignItems='center'>
-//                             {/* <Avatar src={course?.userimage?.data[1]?.attributes.url?`http://localhost:1337${course?.userimage?.data[0]?.attributes.url}`:""} alt={course.user.name} sx={{ width: 30, height: 30 }} /> */}
+//                             {/* <Avatar src={course?.userimage?.data[1]?.attributes.url?`https://promecha.onrender.com${course?.userimage?.data[0]?.attributes.url}`:""} alt={course.user.name} sx={{ width: 30, height: 30 }} /> */}
 //                             <Avatar
 //   src={
 //     course?.userimage?.data &&
 //     course.userimage.data.length >= 2 &&
 //     course.userimage.data[1]?.attributes.url
-//       ? `http://localhost:1337${course.userimage.data[0]?.attributes.url}`
+//       ? `https://promecha.onrender.com${course.userimage.data[0]?.attributes.url}`
 //       : ""
 //   }
 //   alt={course.user.name}
@@ -308,7 +308,7 @@
 
 //         // Make the axios request with the token in the headers
 //         const response = await axios.post(
-//           'http://localhost:1337/api/bookings',
+//           'https://promecha.onrender.com/api/bookings',
 //           {
 //             data: { user: token.user.id, course: id, primarykey },
 //           },
@@ -348,13 +348,13 @@
 //                     <Stack gap='20px'>
 //                         <Typography variant='h4' fontWeight={700}>{course.title}</Typography>
 //                         <Stack direction='row' gap={2} alignItems='center'>
-//                             {/* <Avatar src={course?.userimage?.data[1]?.attributes.url?`http://localhost:1337${course?.userimage?.data[0]?.attributes.url}`:""} alt={course.user.name} sx={{ width: 30, height: 30 }} /> */}
+//                             {/* <Avatar src={course?.userimage?.data[1]?.attributes.url?`https://promecha.onrender.com${course?.userimage?.data[0]?.attributes.url}`:""} alt={course.user.name} sx={{ width: 30, height: 30 }} /> */}
 //                             <Avatar
 //   src={
 //     course?.userimage?.data &&
 //     course.userimage.data.length >= 2 &&
 //     course.userimage.data[1]?.attributes.url
-//       ? `http://localhost:1337${course.userimage.data[0]?.attributes.url}`
+//       ? `https://promecha.onrender.com${course.userimage.data[0]?.attributes.url}`
 //       : ""
 //   }
 //   alt={course.user.name}
@@ -482,7 +482,7 @@ const CourseDetails: React.FC<CourseProps> = ({ course, id }: CourseProps) => {
       if (token && token.jwt && token.user && token.user.id) {
         const primarykey = `${token.user.id}${id}`;
         const response = await axios.post(
-          'http://localhost:1337/api/bookings',
+          'https://promecha.onrender.com/api/bookings',
           {
             data: { user: token.user.id, course: id, primarykey },
           },
@@ -521,7 +521,7 @@ const CourseDetails: React.FC<CourseProps> = ({ course, id }: CourseProps) => {
                   course?.userimage?.data &&
                   course.userimage.data.length >= 2 &&
                   course.userimage.data[1]?.attributes.url
-                    ? `http://localhost:1337${course.userimage.data[0]?.attributes.url}`
+                    ? `https://promecha.onrender.com${course.userimage.data[0]?.attributes.url}`
                     : ""
                 }
                 alt={course.user.name}

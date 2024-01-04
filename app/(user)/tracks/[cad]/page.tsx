@@ -251,7 +251,7 @@
    
 
 
-//     const response = await fetch(`http://localhost:1337/api/tracks/${props.params.cad}/?populate=mainImgSrc&populate=sectionImg&populate=courses&populate=courses.imgSrc&populate=courses.userimage&populate=courses.chapters`);
+//     const response = await fetch(`https://promecha.onrender.com/api/tracks/${props.params.cad}/?populate=mainImgSrc&populate=sectionImg&populate=courses&populate=courses.imgSrc&populate=courses.userimage&populate=courses.chapters`);
 //     const data = await response.json()
 //     const dataapi=  data.data.attributes
 
@@ -374,7 +374,7 @@
 //                             }}
 //                         >
 //                             <Image
-//                                 src={dataapi?.mainImgSrc?.data?.attributes?.url?`http://localhost:1337${dataapi?.mainImgSrc?.data?.attributes?.url}`:''}
+//                                 src={dataapi?.mainImgSrc?.data?.attributes?.url?`https://promecha.onrender.com${dataapi?.mainImgSrc?.data?.attributes?.url}`:''}
 //                                 alt={track.title}
 //                                 width={600} height={550}
 //                                 style={{
@@ -384,7 +384,7 @@
 //                             />
 //                             <Box display={{ xs: 'none', md: 'block' }}>
 //                                                         {/* <Image
-//                                   src={dataapi?.mainImgSrc?.data?.attributes?.url?`http://localhost:1337${dataapi?.sectionImg?.data?.attributes?.url}`:''}
+//                                   src={dataapi?.mainImgSrc?.data?.attributes?.url?`https://promecha.onrender.com${dataapi?.sectionImg?.data?.attributes?.url}`:''}
 //                                     alt={track.title}
 //                                     width={121} height={78}
 //                                     style={{
@@ -620,7 +620,7 @@ const CADTracks = async (props: any): Promise<JSX.Element> => {
                             />
                             <Box display={{ xs: 'none', md: 'block' }}>
                                 {/* <Image
-                                  src={dataapi?.mainImgSrc?.data?.attributes?.url?`http://localhost:1337${dataapi?.sectionImg?.data?.attributes?.url}`:''}
+                                  src={dataapi?.mainImgSrc?.data?.attributes?.url?`https://promecha.onrender.com${dataapi?.sectionImg?.data?.attributes?.url}`:''}
                                     alt={track.title}
                                     width={121} height={78}
                                     style={{

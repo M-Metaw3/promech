@@ -26,7 +26,7 @@ import { redirect } from 'next/navigation';
 // //     useEffect(() => {
 // //       const fetchData = async () => {
 // //         try {
-// //           const response = await fetch('http://localhost:1337/api/tracks?fields[0]=title');
+// //           const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
 // //           const data = await response.json()
 // //           setData(data.data);
           
@@ -34,7 +34,7 @@ import { redirect } from 'next/navigation';
 // //         // console.log(data.data[0])
     
 // //         //   console.log(dataapi[0].id)
-// //     //   console.log(`http://localhost:1337${dataapi?.mainImgSrc?.data?.attributes?.url}`)
+// //     //   console.log(`https://promecha.onrender.com${dataapi?.mainImgSrc?.data?.attributes?.url}`)
     
 // //         } catch (error:any) {
 // //           console.error('Error fetching data:', error);
@@ -320,7 +320,7 @@ import { redirect } from 'next/navigation';
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const response = await fetch('http://localhost:1337/api/tracks?fields[0]=title');
+//         const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
 //         const data = await response.json();
 //         setData(data.data);
 //       } catch (error) {
@@ -600,9 +600,10 @@ const UserHeader: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
+        
         const data = await response.json();
         setData(data.data);
-      } catch (error) {
+      } catch (error:any) {
         console.error('Error fetching data:', error);
       }
     };

@@ -53,7 +53,7 @@
 //         e.preventDefault();
    
 //           try {
-//             const response = await axios.post('http://localhost:1337/api/auth/local', formData);
+//             const response = await axios.post('https://promecha.onrender.com/api/auth/local', formData);
 //             console.log(response)
 //             if(response.status==200){
 //                 const token = response?.data;
@@ -183,7 +183,7 @@ const LoginPage = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:1337/api/auth/local', formData);
+            const response = await axios.post('https://promecha.onrender.com/api/auth/local', formData);
             console.log(response)
             if(response.status==200){
                 const token = response?.data;

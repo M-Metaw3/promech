@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 }	
 
-const page = () => {
+const page = async() => {
 	const tracks = [
 		{
 			title: 'CAD &',
@@ -136,6 +136,11 @@ const page = () => {
 		*/
 	];
 
+
+
+	// const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
+        
+	// const data = await response.json();
 	return (
 		<>
 			<Box position='relative' bgcolor='primary.main' color='#FFF' marginTop='106px' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>

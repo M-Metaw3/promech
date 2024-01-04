@@ -7,7 +7,7 @@
  
 
 
-//     const response = await fetch(`http://localhost:1337/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
+//     const response = await fetch(`https://promecha.onrender.com/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
 
 //     next:{
 //         revalidate: 60
@@ -21,7 +21,7 @@
 
 
 
-// // const response = await fetch(`http://localhost:1337/api/courses`);
+// // const response = await fetch(`https://promecha.onrender.com/api/courses`);
 // // const data = await response.json()
 // // const dataapi= await data.data.attributes
 // // console.log(dataapi)
@@ -110,7 +110,7 @@ import CourseDetails from '@/components/CourseDetails';
 import { usePathname } from 'next/navigation';
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
-    const response = await fetch(`http://localhost:1337/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
+    const response = await fetch(`https://promecha.onrender.com/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
         next: {
             revalidate: 60
         }
