@@ -653,7 +653,7 @@ const UserHeader: React.FC = () => {
       href: '/career',
     },
     {
-      name: ' Us',
+      name: 'Contact Us',
       href: '/contact',
     },
   ];
