@@ -114,7 +114,7 @@ const AboutPage = async() => {
 	];
 
 
-    const response = await fetch(`http://localhost:1337/api/about-uses?populate=image`,{
+    const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`,{
 
     next:{
         revalidate: 0
@@ -154,7 +154,7 @@ const AboutPage = async() => {
                     <Grid item xs={12} md={5} display='flex' alignItems='center' justifyContent='center' position='relative' overflow={{ xs: 'hidden', lg: 'unset' }}>
                         <Image
                             alt='company'
-                            src={data?.data[0]?`http://localhost:1337${data?.data[0]?.attributes.image.data.attributes.url}`:''}
+                            src={data?.data[0]?`https://promecha.onrender.com${data?.data[0]?.attributes.image.data.attributes.url}`:''}
                             width={400} height={400}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -216,8 +216,8 @@ const AboutPage = async() => {
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
                             alt='mission'
-                            src={data?.data[1]?`http://localhost:1337${data?.data[1]?.attributes.image.data.attributes.url}`:''}
-                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/mission.jpg'}
+                            src={data?.data[1]?`https://promecha.onrender.com${data?.data[1]?.attributes.image.data.attributes.url}`:''}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`https://promecha.onrender.com${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/mission.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -233,9 +233,9 @@ const AboutPage = async() => {
                 <Grid container alignItems='center' columnSpacing={{ md: 4, lg: 8, xl: 12 }} rowGap={2}>
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
-                       src={data?.data[2]?`http://localhost:1337${data?.data[2]?.attributes.image.data.attributes.url}`:''}
+                       src={data?.data[2]?`https://promecha.onrender.com${data?.data[2]?.attributes.image.data.attributes.url}`:''}
                        alt={""}
-                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/vision.jpg'}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`https://promecha.onrender.com${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/vision.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,

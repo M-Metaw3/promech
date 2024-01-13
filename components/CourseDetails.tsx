@@ -77,7 +77,7 @@ console.log(course)
         return;
       } else {
         const response = await fetch(
-          `http://localhost:1337/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true`
+          `https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true`
         );
         const datares = await response.json();
         const isAttendArray = Array.isArray(datares) ? datares : [datares];
@@ -103,7 +103,7 @@ setisattend(isAttendArray)
         return;
       } else {
         const response = await fetch(
-          `http://localhost:1337/api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
+          `https://promecha.onrender.com/api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
         );
         const datares = await response.json();
         console.log(datares?.data)
@@ -158,7 +158,7 @@ setisattend(isAttendArray)
         console.log(id);
 
         const response = await axios.post(
-          'http://localhost:1337/api/bookings',
+          'https://promecha.onrender.com/api/bookings',
           {
             data: { user, course, primarykey },
           }
@@ -237,7 +237,7 @@ setisattend(isAttendArray)
                 src={
                   course?.userimage?.data &&
                   course.userimage.data?.attributes.url
-                    ? `http://localhost:1337${course.userimage.data?.attributes.url}`
+                    ? `https://promecha.onrender.com${course.userimage.data?.attributes.url}`
                     : ''
                 }
                 alt={course.user.name}

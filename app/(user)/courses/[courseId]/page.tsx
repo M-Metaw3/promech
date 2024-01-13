@@ -4,7 +4,7 @@
 // import { usePathname } from 'next/navigation';
 
 // const CoursePage = async ({ params }: { params: { courseId: string } }) => {
-//     const response = await fetch(`http://localhost:1337/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
+//     const response = await fetch(`https://promecha.onrender.com/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
 //         next: {
 //             revalidate:0
 //         }
@@ -120,7 +120,7 @@ interface CoursePageProps {
 }
 
 const CoursePage: FC<CoursePageProps> = async ({ params }) => {
-    const response = await fetch(`http://localhost:1337/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
+    const response = await fetch(`https://promecha.onrender.com/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`, {
         next: {
             revalidate:0
         }

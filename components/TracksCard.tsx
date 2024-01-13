@@ -32,7 +32,7 @@ export default function MultiActionAreaCard({ track }: MultiActionAreaCardProps)
         <CardMedia
           component="img"
           height="140"
-          image={track?.attributes?.mainImgSrc?.data?.attributes?.url ? `http://localhost:1337${track.attributes.mainImgSrc.data.attributes.url}` : ''}
+          image={track?.attributes?.mainImgSrc?.data?.attributes?.url ? `https://promecha.onrender.com${track.attributes.mainImgSrc.data.attributes.url}` : ''}
           alt="green iguana"
         />
         <CardContent>

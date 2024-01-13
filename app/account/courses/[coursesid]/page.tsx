@@ -92,7 +92,7 @@
 //       const user =token.user.id
 //       try {
 //         // Step 1: Post data to the taskanswers API
-//         const taskanswerResponse = await axios.post('http://localhost:1337/api/taskanswers', {
+//         const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
 //           data: {
 //             task: id,
 //             users_permissions_user: user, // Make sure to define 'user' appropriately
@@ -110,7 +110,7 @@
 //             formDataUpload.append('field', 'answerfile');
 //             formDataUpload.append('files', selectedFile);
 
-//             const uploadResponse = await axios.post('http://localhost:1337/api/upload', formDataUpload, {
+//             const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
 //               onUploadProgress: (progressEvent) => {
 //                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
 //                 setUploadProgress(progress);
@@ -152,7 +152,7 @@
 //    React.useEffect(() => {
 //         const fetchData = async () => {
 //                 const response = await fetch(`
-//                 http://localhost:1337/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+//                 https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
 //             `);
 //                 const datares = await response.json()
 //     const coursee = await datares?.data;
@@ -205,7 +205,7 @@
 //             console.log(token.user.id);
 //             console.log(id);
 //             const response = await axios.post(
-//               "http://localhost:1337/api/attendaces",
+//               "https://promecha.onrender.com/api/attendaces",
 //               {
 //                 data: {
 //                   user: token.user.id,
@@ -254,7 +254,7 @@
               
 //                 const response = await fetch(`
       
-//                 http://localhost:1337/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
+//                 https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
 //                 `);
 //                 const datares = await response.json()
 //                 setisattend(datares)
@@ -284,7 +284,7 @@
       
               
 //                 const response = await fetch(`
-//                 http://localhost:1337/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+//                 https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
           
 //                 `);
 //                 const datares = await response.json()
@@ -340,7 +340,7 @@
 //                     src={
 //                       course?.attributes?.userimage?.data &&
 //                       course?.attributes?.userimage.data?.attributes.url
-//                         ? `http://localhost:1337${course.attributes?.userimage.data?.attributes.url}`
+//                         ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
 //                         : ""
 //                     }
 //                     alt={course?.user?.name}
@@ -818,7 +818,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
       const user = token.user.id;
       try {
         // Step 1: Post data to the taskanswers API
-        const taskanswerResponse = await axios.post('http://localhost:1337/api/taskanswers', {
+        const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
           data: {
             task: id,
             users_permissions_user: user, // Make sure to define 'user' appropriately
@@ -837,7 +837,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
             formDataUpload.append('field', 'answerfile');
             formDataUpload.append('files', selectedFile);
 
-            const uploadResponse = await axios.post('http://localhost:1337/api/upload', formDataUpload, {
+            const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
               onUploadProgress: (progressEvent) => {
                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
                 setUploadProgress(progress);
@@ -905,7 +905,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
         console.log(token.user.id);
         console.log(id);
         const response = await axios.post(
-          "http://localhost:1337/api/attendaces",
+          "https://promecha.onrender.com/api/attendaces",
           {
             data: {
               user: token.user.id,
@@ -970,7 +970,7 @@ const doesLessonExist = (lessonId: string) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`
-        http://localhost:1337/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+        https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
       `);
       const datares = await response.json()
       const coursee = await datares?.data;
@@ -993,7 +993,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          http://localhost:1337/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
+          https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
         `);
         const datares = await response.json()
         setisattend(datares)
@@ -1016,7 +1016,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          http://localhost:1337/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+          https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
         `);
         const datares = await response.json()
         settasks(datares.data)
@@ -1049,7 +1049,7 @@ console.log(course?.attributes?.chapters?.data)
                   src={
                     course?.attributes?.userimage?.data &&
                     course?.attributes?.userimage.data?.attributes.url
-                      ? `http://localhost:1337${course.attributes?.userimage.data?.attributes.url}`
+                      ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
                       : ""
                   }
                   alt={course?.user?.name}
@@ -1113,7 +1113,7 @@ console.log(course?.attributes?.chapters?.data)
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             
-                            <Button  component={Link} href={`http://localhost:1337${task.attributes.file.data.attributes.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
+                            <Button  component={Link} href={`https://promecha.onrender.com${task.attributes.file.data.attributes.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
                               
       Download pdf quize
       <VisuallyHiddenInput type="file" />

@@ -24,7 +24,7 @@
 //         push('/login');
 //         return;
 //       } else {
-//         const response = await fetch("http://localhost:1337/api/users/me", {
+//         const response = await fetch("https://promecha.onrender.com/api/users/me", {
 //           headers: {
 //             Authorization: `Bearer ${parsetoken.jwt}`,
 //           },
@@ -77,7 +77,7 @@
 
 //     const tokenString = getAuthTokenCookie();
 //     const parsetoken = tokenString && JSON.parse(tokenString);
-//     const response = await fetch(`http://localhost:1337/api/users/${parsetoken.user.id}`, {
+//     const response = await fetch(`https://promecha.onrender.com/api/users/${parsetoken.user.id}`, {
 //       method: 'PUT',
 //       headers: {
 //         Authorization: `Bearer ${parsetoken.jwt}`,
@@ -220,7 +220,7 @@ function EditProfile() {
         push('/login');
         return;
       } else {
-        const response = await fetch("http://localhost:1337/api/users/me", {
+        const response = await fetch("https://promecha.onrender.com/api/users/me", {
           headers: {
             Authorization: `Bearer ${parsetoken.jwt}`,
           },
@@ -280,7 +280,7 @@ function EditProfile() {
 
     const tokenString = getAuthTokenCookie();
     const parsetoken = tokenString && JSON.parse(tokenString);
-    const response = await fetch(`http://localhost:1337/api/users/${parsetoken.user.id}`, {
+    const response = await fetch(`https://promecha.onrender.com/api/users/${parsetoken.user.id}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${parsetoken.jwt}`,
