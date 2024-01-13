@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid,Alert ,Stack} from '@mui/material';
 import BlogCard from '@/components/BlogCard';
 
-const Blogs =async () => {
+ const Blogs = async () => {
     const blogs = [
         {
             id: '1',
@@ -68,7 +68,7 @@ const Blogs =async () => {
     });
     const data = await response.json()
     const dataapi=  await data?.data
-    // console.log(dataapi)
+
 
     return (
         <Container disableGutters maxWidth='xl'>

@@ -11,9 +11,14 @@ const Profile = () => {
         removeAuthTokenCookie();
         // Redirect to the login page or any other desired page
         push('/login');
-      };
-      return     handleLogout()
-       
+    };
+
+    // You can use the handleLogout function as an event handler, not calling it directly
+    return (
+        <button onClick={handleLogout}>
+            Logout
+        </button>
+    );
 }
 
 export default Profile;
