@@ -7,8 +7,8 @@ const nextConfig = {
         },
     },
       images: {
-    // domains: ['promecha.onrender.com'],
-    domains: ['localhost'],
+    domains: ['promecha.onrender.com'],
+    // domains: ['localhost'],
 
   },
 }
