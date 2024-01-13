@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid,Alert ,Stack} from '@mui/material';
 import BlogCard from '@/components/BlogCard';
 
 const Blogs =async () => {
@@ -50,7 +50,7 @@ const Blogs =async () => {
 
 
 
-    // const response = await fetch(`https://promecha.onrender.com/api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
+    // const response = await fetch(`http://localhost:1337//api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
 
     // next:{
     //     revalidate: 60
@@ -59,11 +59,11 @@ const Blogs =async () => {
     // const data = await response.json()
     // const dataapi=  await data?.data?.attributes
 
-    const response = await fetch(`https://promecha.onrender.com/api/blogs/?populate=thubnail&populate=images`
+    const response = await fetch(`http://localhost:1337/api/blogs/?populate=thubnail&populate=images`
     ,{
 
     next:{
-        revalidate: 60
+        revalidate: 0
     }
     });
     const data = await response.json()
@@ -79,7 +79,17 @@ const Blogs =async () => {
                 <BlogCard blog={blog} />
               </Grid>
             ))
-          : ''}
+          
+          : 
+          <Grid container columns={2} columnSpacing={4} rowGap={4}>
+
+          <Stack sx={{ width: '100%' }} spacing={2}>
+
+          <Alert  severity="info">   this is no courses added!</Alert>
+          </Stack>
+            </Grid>
+
+      }
             </Grid>
         </Container>
     )

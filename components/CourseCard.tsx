@@ -41,6 +41,7 @@ type Course = {
 //   }
   
 const CourseCard = ({ course }:any) => {
+    console.log(course)
     const courses: Course[]= [
         {
           imgSrc: '/home/temp/photo1.jpg',
@@ -162,7 +163,7 @@ const CourseCard = ({ course }:any) => {
 
             <Box position='relative' width='100%' height={266}>
                 <Image
-                    src={course?.attributes?.imgSrc?.data?.attributes.url?`https://promecha.onrender.com${course?.attributes?.imgSrc?.data?.attributes.url}`:''} alt={course?.attributes?.title}
+                    src={course?.attributes?.imgSrc?.data?.attributes.url?`http://localhost:1337${course?.attributes?.imgSrc?.data?.attributes.url}`:''} alt={course?.attributes?.title}
                     width={270} height={200}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', transition: '0.2s' }}
                 />
@@ -179,7 +180,19 @@ const CourseCard = ({ course }:any) => {
             <Typography variant='h6' fontSize='18px' fontWeight={700} color='primary.main' flexGrow={1}>{course?.attributes?.title}</Typography>
             <Stack gap={2}>
                 <Stack direction='row' gap='10px' alignItems='center'>
-                    <Avatar src={`ttp://localhost:1337/${course?.attributes?.userimage?.data[0]?.attributes?.url}`} alt={course?.attributes?.user} sx={{ width: 30, height: 30 }} />
+                <Avatar
+  src={
+    course &&
+    course.attributes &&
+    course.attributes.userimage &&
+    course.attributes.userimage.data &&
+    course.attributes.userimage.data.attributes.url
+      ? `http://localhost:1337${course.attributes.userimage.data.attributes.url}`
+      : ''
+  }
+  alt={course?.attributes?.user}
+  sx={{ width: 30, height: 30 }}
+/>
                     <Typography fontSize='14px'>{course?.attributes?.user}</Typography>
                 </Stack>
                 <Stack direction='row' gap={2} alignItems='center'>

@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
-
+import { ChakraProvider } from '@chakra-ui/react'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -22,7 +22,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<ThemeRegistry>
+		
 					{children}
+			
 				</ThemeRegistry>
 			</body>
 		</html>

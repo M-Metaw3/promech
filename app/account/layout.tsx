@@ -10,6 +10,9 @@ import InsertChartOutlinedSharpIcon from '@mui/icons-material/InsertChartOutline
 import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCalendarOutlined';
 import NavLink from '@/components/NavLink';
+import { useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
+import { setAuthTokenCookie, getAuthTokenCookie } from '../../utils/auth';
 
 const drawerWidth = 260;
 
@@ -19,6 +22,8 @@ interface Props {
 
 export default function UserAccountLayout({ children }: { children: React.ReactNode }) {
 	const [mobileOpen, setMobileOpen] = React.useState(false);
+	const [username, setusername] = React.useState('');
+
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
@@ -49,8 +54,33 @@ export default function UserAccountLayout({ children }: { children: React.ReactN
 			title: 'Profile',
 			href: '/account/profile',
 			icon: <PermContactCalendarOutlinedIcon />
+		},
+		{
+			title: 'Log Out',
+			href: '/Logout',
+			icon: <PermContactCalendarOutlinedIcon />
 		}
 	]
+	const { push } = useRouter();
+React.useEffect(()=>{
+	const tokenString =  getAuthTokenCookie();
+	console.log(tokenString)
+	if (!tokenString) {
+	  toast.error('You must login to take this service');
+	  push('/login')
+	  return;
+	}else{
+		const parsetoken = tokenString && JSON.parse(tokenString)
+		setusername(parsetoken.user.username)
+	}
+},[])
+	// const tokenString =  getAuthTokenCookie();
+	// console.log(tokenString)
+	// if (!tokenString) {
+	//   toast.error('You must login to take this service');
+	//   push('/login')
+	//   return;
+	// }
 
 	const drawer = (
 		<Stack padding={2} gap='20px'>
@@ -140,10 +170,10 @@ export default function UserAccountLayout({ children }: { children: React.ReactN
 						onClick={handleDrawerToggle}
 						sx={{ mr: 2, display: { sm: 'none' } }}
 					>
-						<MenuIcon />
+						{/* <MenuIcon /> */}
 					</IconButton>
 					<Typography variant="h4" fontWeight={500} noWrap>
-						Hi, Salma Hegazy
+						Hi,{username}
 					</Typography>
 					<Avatar src={'//'} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
 				</Toolbar>

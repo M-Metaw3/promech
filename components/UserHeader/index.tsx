@@ -26,7 +26,7 @@ import { redirect } from 'next/navigation';
 // //     useEffect(() => {
 // //       const fetchData = async () => {
 // //         try {
-// //           const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
+// //           const response = await fetch('http://localhost:1337//api/tracks?fields[0]=title');
 // //           const data = await response.json()
 // //           setData(data.data);
           
@@ -34,7 +34,7 @@ import { redirect } from 'next/navigation';
 // //         // console.log(data.data[0])
     
 // //         //   console.log(dataapi[0].id)
-// //     //   console.log(`https://promecha.onrender.com${dataapi?.mainImgSrc?.data?.attributes?.url}`)
+// //     //   console.log(`http://localhost:1337/${dataapi?.mainImgSrc?.data?.attributes?.url}`)
     
 // //         } catch (error:any) {
 // //           console.error('Error fetching data:', error);
@@ -320,7 +320,7 @@ import { redirect } from 'next/navigation';
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
+//         const response = await fetch('http://localhost:1337//api/tracks?fields[0]=title');
 //         const data = await response.json();
 //         setData(data.data);
 //       } catch (error) {
@@ -599,7 +599,7 @@ const UserHeader: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://promecha.onrender.com/api/tracks?fields[0]=title');
+        const response = await fetch('http://localhost:1337/api/tracks?fields[0]=title');
         
         const data = await response.json();
         setData(data.data);
@@ -783,14 +783,37 @@ const UserHeader: React.FC = () => {
             ))}
           </Box>
           <Stack direction='row' gap={2} alignItems='stretch' minWidth={{ xs: 0, md: 312 }} sx={{ flexGrow: 0 }}>
-            {!islogin ? <Button variant='contained' size='large'
-              component={Link} href='/login'
-              sx={{ fontWeight: 600, fontSize: '16px', height: 42, whiteSpace: 'nowrap' }}
-            >Sign In</Button> : <Button variant='contained' size='large'
-              onClick={handleLogout}
-              sx={{ fontWeight: 600, fontSize: '16px', height: 42, whiteSpace: 'nowrap' }}
-            >logout</Button>}
-            <Search />
+          {!islogin ? (
+  <Button
+    variant='contained'
+    size='large'
+    component={Link}
+    href='/login'
+    sx={{ fontWeight: 600, fontSize: '16px', height: 42, whiteSpace: 'nowrap' }}
+  >
+    Sign In
+  </Button>
+) : (
+  <div >
+    <Button
+  
+      variant='contained'
+      size='large'
+      onClick={handleLogout}
+      sx={{ fontWeight: 600, fontSize: '16px', height: 42, whiteSpace: 'nowrap' }}
+    >
+      Logout
+    </Button>
+    <Button
+    component={Link}
+    href='/account/overview'
+    color='success'   size='large' variant="contained">
+      Dashboard
+    </Button>
+  </div>
+)}
+
+            {/* <Search /> */}
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

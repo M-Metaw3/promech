@@ -4,7 +4,7 @@ import { Box, Container, Grid, List, ListItem, ListItemText, Stack, Typography }
 import { fonts } from '@/components/ThemeRegistry/variables';
 import Executives from './Executives';
 
-const AboutPage = () => {
+const AboutPage = async() => {
     const executives = [
 		{
 			name: 'Khaled Abo El-Fetouh',
@@ -113,23 +113,48 @@ const AboutPage = () => {
 		}
 	];
 
+
+    const response = await fetch(`http://localhost:1337/api/about-uses?populate=image`,{
+
+    next:{
+        revalidate: 0
+    }
+    });
+    const data = await response.json()
+    const dataapi=  await data?.data[0]?.attributes
+    // console.log(dataapi)
+	console.log(data?.data[0]?.attributes.image.data.attributes.url)
+
     return (
-        <>
+ <div>
         <Box position='relative' bgcolor='#F3FBFB' marginTop={-20} paddingTop={20} paddingBottom={4}>
             <Container disableGutters maxWidth='lg' sx={{ position: 'relative', paddingX: 1, paddingY: { xs: 1, md: 5, lg: 7 }, zIndex: 1 }}>
                 <Grid container columnSpacing={4} rowGap={2}>
                     <Grid item xs={12} md={7}>
                         <Typography typography={{ xs: 'h4', sm: 'h3' }} fontWeight='600 !important' color='text.secondary' marginBottom={3}>
-                            Who is &nbsp;
-                            <Typography variant='inherit' display='inline' color='primary.main' component='small'>Promech Academy?</Typography>
+                        {data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.question:(
+                            <>
+                                <Typography typography={{ xs: 'h4', sm: 'h3' }} fontWeight='600 !important' color='text.secondary' marginBottom={3}>
+                                    Who is &nbsp;
+                 <Typography variant='inherit' display='inline' color='primary.main' component='small'>Promech Academy?</Typography>
+                          </Typography>
+                            </>
+                        )}
+                       
                         </Typography>
-                        <Typography color='#000' fontWeight={700} fontSize='18px' textAlign='justify' lineHeight='45px'>
-                            Promech Academy provides opportunities for individuals, startups, small and medium-sized companies to learn and develop concepts, skills, and applications related to Industry 4.0 technologies. The academy also focuses on teaching students these technologies to create job opportunities and promote industrial engineering innovations while enhancing the capabilities of industrial companies and encouraging the local industrial economy. The courses are divided into several tracks: Mechanical and Reverse Engineering, Fabrication, and Sheet Metal.
+                        <Typography   style={{ 
+    maxWidth: "660px", 
+    overflowWrap: "break-word", 
+    wordWrap: "break-word" 
+  }} color='#000' fontWeight={700} fontSize='18px' textAlign='justify' word-wrap= "break-word" lineHeight='45px'   maxWidth="300px" >
+                        {data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.answers:"        Promech Academy provides opportunities for individuals, startups, small and medium-sized companies to learn and develop concepts, skills, and applications related to Industry 4.0 technologies. The academy also focuses on teaching students these technologies to create job opportunities and promote industrial engineering innovations while enhancing the capabilities of industrial companies and encouraging the local industrial economy. The courses are divided into several tracks: Mechanical and Reverse Engineering, Fabrication, and Sheet Metal."}
                         </Typography>
+                  
                     </Grid>
                     <Grid item xs={12} md={5} display='flex' alignItems='center' justifyContent='center' position='relative' overflow={{ xs: 'hidden', lg: 'unset' }}>
                         <Image
-                            src='/about/academy.jpg' alt='company'
+                            alt='company'
+                            src={data?.data[0]?`http://localhost:1337${data?.data[0]?.attributes.image.data.attributes.url}`:''}
                             width={400} height={400}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -168,16 +193,31 @@ const AboutPage = () => {
                             sx={{ transform: 'scaleX(-1)' }}
                         />
                         <Stack gap={3} >
-                            <Typography variant='h3' fontWeight={600} color='primary.main'>What do we do?</Typography>
+                            <Typography variant='h3' fontWeight={600} color='primary.main'>
+                            
+                            {data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.question:"What do we do?"}
+                            
+                            </Typography>
                             {/* <Typography variant='h5' fontWeight={500} color='primary.main'>Endorsements on All Career Levels</Typography> */}
-                            <Typography component='div' lineHeight='35px' color='#000n' textAlign='justify'>
-                                We empower Egyptian and Arab manufacturers to revolutionize the manufacturing industry in the Middle East and prosper our economies and communities by training and educating individuals and entities on the world’s top manufacturing technologies.
+                            <Typography style={{ 
+    maxWidth: "660px", 
+    overflowWrap: "break-word", 
+    wordWrap: "break-word" 
+  }} component='div' lineHeight='35px' color='#000n' textAlign='justify'>
+
+
+                            {data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.answers:"            We empower Egyptian and Arab manufacturers to revolutionize the manufacturing industry in the Middle East and prosper our economies and communities by training and educating individuals and entities on the world’s top manufacturing technologies."}
+
+
+                            
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
-                            src='/about/mission.jpg' alt='mission'
+                            alt='mission'
+                            src={data?.data[1]?`http://localhost:1337${data?.data[1]?.attributes.image.data.attributes.url}`:''}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/mission.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -193,27 +233,46 @@ const AboutPage = () => {
                 <Grid container alignItems='center' columnSpacing={{ md: 4, lg: 8, xl: 12 }} rowGap={2}>
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
-                            src='/about/vision.jpg' alt='vision'
+                       src={data?.data[2]?`http://localhost:1337${data?.data[2]?.attributes.image.data.attributes.url}`:''}
+                       alt={""}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/vision.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
-                                width: '100%', height: 'auto',
                             }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} display='flex' flexDirection='column' gap={6}>
                         <Stack gap={3} >
-                            <Typography variant='h3' fontWeight={600} color='primary.main'>How do we do it?</Typography>
+                            <Typography variant='h3' fontWeight={600} color='primary.main'>How do we do it?
+                            {data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.question:"How do we do it?"}
+                            
+                            
+                            
+                            </Typography>
                             {/* <Typography variant='h5' fontWeight={500} color='primary.main'>A lifelong Fellow in Your Career Journey</Typography> */}
+                            <Typography style={{ 
+    maxWidth: "660px", 
+    overflowWrap: "break-word", 
+    wordWrap: "break-word" 
+  }} component='div' lineHeight='35px' color='#000n' textAlign='justify'>
+
+
+                            {data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.answers:(
                             <Typography component='div' lineHeight='35px' color='#000n' textAlign='justify'>
-                                By having skilled and experienced mentors to train and guide our candidates on the world’s latest manufacturing technologies through providing customized and condensed training tracks in different manufacturing fields like:
-                                <ol>
+                                 By having skilled and experienced mentors to train and guide our candidates on the world’s latest manufacturing technologies through providing customized and condensed training tracks in different manufacturing fields like:
+                                 <ol>
                                     <Typography component='li' variant='inherit'>CAD & Reverse Engineering</Typography>
                                     <Typography component='li' variant='inherit'>Additive Manufacturing (3D Printing)</Typography>
                                     <Typography component='li' variant='inherit'>Simulation (FEA & CFD)</Typography>
                                     <Typography component='li' variant='inherit'>CAM & CNC Manufacturing Fundamentals</Typography>
                                     <Typography component='li' variant='inherit'>3D Scanning and Inspection</Typography>
                                 </ol>
+                            </Typography>
+
+                            )}
+                           
+                        
                             </Typography>
                         </Stack>
                         <Box component='img' alt='ellipse' src='/home/ellipse3.svg'
@@ -258,7 +317,7 @@ const AboutPage = () => {
             </Stack>
         </Box> */}
 
-        </>
+        </div>
     )
 }
 
