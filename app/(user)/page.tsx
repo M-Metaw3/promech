@@ -880,7 +880,7 @@ const page: FC = async() => {
 				<Container disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
 					<Stack alignItems='center' width='100%' gap={2}>
 						<Typography variant='h4' color='primary.main' fontWeight={500} lineHeight='normal'>Explore</Typography>
-						<Typography variant='h4' fontWeight={700} lineHeight='normal'>Tracks</Typography>
+						<Typography variant='h4' fontWeight={700} lineHeight='normal'>Promech Academy Tracks</Typography>
 						<Divider variant='middle' sx={{ bgcolor: 'primary.main', width: 100, opacity: 0.3, marginTop: 2 }} />
 					</Stack>
 
