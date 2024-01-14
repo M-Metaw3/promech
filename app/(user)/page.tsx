@@ -729,13 +729,35 @@ const page: FC = async() => {
     overflowWrap: "break-word", 
     wordWrap: "break-word" 
   }} item xs={12} md={7} display='flex' flexDirection='column' gap={2} alignItems='flex-start'>
-							<Typography variant='h3' component='div' typography={{ xs: 'h4', md: 'h3' }} fontWeight={'600 !important'} fontFamily={fonts.poppins} lineHeight='normal !important' sx={{ wordSpacing: 2 }}>
-								{data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.header:"Empowering the next generation of sustainable manufacturers." }
-							</Typography>
-							<Stack gap={0.5}>
-						
-								{data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.paragraph:(
-        <>
+					<Typography
+  variant="h3"
+  component="div"
+  typography={{ xs: 'h4', md: 'h3' }}
+  fontWeight={'600 !important'}
+  fontFamily={fonts.poppins}
+  lineHeight="normal !important"
+  sx={{ wordSpacing: 2 }}
+>
+  {data?.data && data?.data[0]?.attributes?.header
+    ? data?.data[0]?.attributes?.header
+    : "Empowering the next generation of sustainable manufacturers."}
+</Typography>
+
+
+
+
+
+	
+
+<Stack gap={0.5}>
+  {data?.data && data?.data[0]?.attributes?.paragraph ? (
+    data?.data[0]?.attributes?.paragraph
+  ) : (
+    <>
+
+
+
+
           <Typography lineHeight={2} fontSize='18px' maxWidth={600}>
             Welcome to <Typography component='span' variant='inherit' textTransform='uppercase' display='inline'>PROMECH</Typography> Academy, the hub for aspiring manufacturers seeking to revolutionize the future of Egypt and the Arab world.
           </Typography>
@@ -764,7 +786,7 @@ const page: FC = async() => {
 							<img alt='giz' src='/home/giz.png' /> */}
 						</Grid>
 						<Grid item xs={12} md={5} display='flex' justifyContent={{ xs: 'center', md: 'flex-end' }}>
-							<Image alt='ellipse' 
+							{/* <Image alt='ellipse' 
 							src={data&&data?.data[0]&&data?.data[0]?.attributes&&data?.data[0]?.attributes?.image?`https://promecha.onrender.com${data?.data[0]?.attributes?.image?.data.attributes.url}`:'/home/ellipse.jpg'}
 						
 								width={405} height={405}
@@ -775,7 +797,34 @@ const page: FC = async() => {
 									border: '20px solid rgba(255, 255, 255, 0.10)',
 									boxShadow: '0px 4px 54px 0px rgba(0, 0, 0, 0.15)'
 								}}
-							/>
+							/> */}
+
+
+<Image
+  alt="ellipse"
+  src={
+    data?.data &&
+    data?.data[0]?.attributes &&
+    data?.data[0]?.attributes?.image &&
+    data?.data[0]?.attributes?.image?.data?.attributes?.url
+      ? `https://promecha.onrender.com${data?.data[0]?.attributes?.image?.data.attributes.url}`
+      : '/home/ellipse.jpg'
+  }
+  width={405}
+  height={405}
+  style={{
+    maxWidth: 405,
+    maxHeight: 405,
+    width: '100%',
+    height: 'auto',
+    objectFit: 'cover',
+    borderRadius: '50%',
+    border: '20px solid rgba(255, 255, 255, 0.10)',
+    boxShadow: '0px 4px 54px 0px rgba(0, 0, 0, 0.15)',
+  }}
+/>
+
+
 						</Grid>
 					</Grid>
 					<DownButton />
@@ -791,7 +840,9 @@ const page: FC = async() => {
 			</Box>
 			
 
-{sections&&sections.data.map((el:any)=>(
+{/* {sections&&sections.data.map((el:any)=>( */}
+
+{sections && sections.data && Array.isArray(sections.data) && sections.data.map((el: any) => (
 <>
 <Box id='#sectionId' position='relative' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }} paddingBottom={{ xs: 8, sm: 10, md: 12, lg: 12 }}>
 				<Container  disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex',  alignItems: 'center', gap: 2 }}>
