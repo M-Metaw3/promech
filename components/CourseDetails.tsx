@@ -207,7 +207,7 @@ setisattend(isAttendArray)
     const lessonInJson2 = Array.isArray(isattend) && isattend.some((attendee: Attendee) =>
       attendee?.attributes?.lesson?.data?.id === lessonId
     );
-  
+  // if(lessonInJson1 && lessonInJson2 &&  )
     // Return true if the lesson exists in both JSONs
     return lessonInJson1 && lessonInJson2;
   }
@@ -296,19 +296,26 @@ setisattend(isAttendArray)
                 ))}
               </Fragment>
             ))}
-{isbooking === 1 ? (
+{isbooking ? (
   <Button component={Link} href='/account/courses' variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
     You are already enrolled in this course. Check your courses.
   </Button>
-) : isbooking === 2 ? (
-  <Button disabled variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
-    Pending
-  </Button>
 ) : (
   <Button onClick={handleSubmit} variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
-    Join Course
-  </Button>
-)}
+  Join Course
+</Button>
+  // <Button disabled variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
+  //   Pending
+  // </Button>
+) 
+
+// : 
+// (
+//   <Button onClick={handleSubmit} variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
+//     Join Course
+//   </Button>
+// )
+}
 
 
 
