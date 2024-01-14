@@ -296,7 +296,7 @@ setisattend(isAttendArray)
                 ))}
               </Fragment>
             ))}
-{isbooking ? (
+{!isbooking ? (
   <Button component={Link} href='/account/courses' variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
     You are already enrolled in this course. Check your courses.
   </Button>
