@@ -120,10 +120,10 @@ const AboutPage = async() => {
         revalidate: 0
     }
     });
-    const data = await response.json()
+    const data = await response.json() || []
     const dataapi=  await data?.data[0]?.attributes
     // console.log(dataapi)
-	console.log(data?.data[0]?.attributes.image.data.attributes.url)
+	
 
     return (
  <div>
