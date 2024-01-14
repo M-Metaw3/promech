@@ -298,19 +298,27 @@ function EditProfile() {
 
   return (
     <Container maxWidth="sm">
+
+
+      
       <Box my={4} p={2} borderRadius={2} boxShadow={3}>
         <Typography variant="h5" gutterBottom>
           Edit Profile
         </Typography>
-        <Box my={2}>
+        {/* <Box my={2}>
           <Avatar
             src="https://via.placeholder.com/150x150"
             sx={{ width: 150, height: 150, mb: 2 }}
-          />
-          {/* Replace the below line with <AvatarEdit /> from react-avatar-edit or similar functionality */}
-          <Typography variant="subtitle1">Upload Photo</Typography>
+          /> */}
+        
+          {/* <Typography variant="subtitle1">Upload Photo</Typography>
           <Typography variant="body2" color="textSecondary">300x300 max 2MB</Typography>
-        </Box>
+        </Box> */}
+
+
+
+
+
         <TextField
           fullWidth
           label="Full Name"
@@ -353,7 +361,7 @@ function EditProfile() {
           margin="normal"
         />
         
-        <TextField
+        {/* <TextField
           fullWidth
           label="Website"
           variant="outlined"
@@ -361,7 +369,7 @@ function EditProfile() {
           value={profileData.websiteLink}
           onChange={handleInputChange}
           margin="normal"
-        />
+        /> */}
         <TextField
           fullWidth
           label="Bio"
@@ -373,10 +381,10 @@ function EditProfile() {
           multiline
           rows={4}
         />
-        <Box my={2}>
+        {/* <Box my={2}>
           <Typography variant="subtitle1">Upload as</Typography>
           <input type="file" accept=".pdf,.doc,.docx" onChange={handleResumeChange} />
-        </Box>
+        </Box> */}
         <Box mt={3}>
           <Button variant="contained" color="primary" onClick={handleSubmit}>
             Save Changes

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation'
 import { removeAuthTokenCookie } from '@/utils/auth';
+import { AppBar, Avatar, Box, Button, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Toolbar, Typography } from '@mui/material';
 
 const Profile = () => {
     const { push } = useRouter();
@@ -15,9 +16,9 @@ const Profile = () => {
 
     // You can use the handleLogout function as an event handler, not calling it directly
     return (
-        <button onClick={handleLogout}>
+        <Button onClick={handleLogout}>
             Logout
-        </button>
+        </Button>
     );
 }
 
