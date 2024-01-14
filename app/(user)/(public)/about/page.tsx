@@ -114,16 +114,29 @@ const AboutPage = async() => {
 	];
 
 
-    const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`,{
 
-    next:{
-        revalidate: 0
-    }
-    });
-    const data = await response.json() || []
-    const dataapi=  await data?.data[0]?.attributes
+    // const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`,{
+
+    // next:{
+    //     revalidate: 0
+    // }
+    // });
+    // const data = await response.json() || []
+    // const dataapi=  await data?.data[0]?.attributes
     // console.log(dataapi)
-	
+    let data = null;
+  
+    try {
+      const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`);
+      if (response.ok) {
+        const jsonData = await response.json();
+        data = jsonData?.data ?? null; // Set null if data is not present or if any other optional chaining fails
+      } else {
+        console.error('API call failed:', response.status, response.statusText);
+      }
+    } catch (error :any) {
+      console.error('Fetch error:', error);
+    }
 
     return (
  <div>
