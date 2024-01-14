@@ -701,7 +701,7 @@ const JoinForm: React.FC = () => {
     try {
       setIsLoading(true);
       // Step 1: Post data to the careers API
-      const careersResponse = await axios.post('https://promecha.onrender.com//api/careers', {
+      const careersResponse = await axios.post('https://promecha.onrender.com/api/careers', {
         data: formData,
       });
       const careersData = careersResponse.data;
@@ -716,7 +716,7 @@ const JoinForm: React.FC = () => {
         formDataUpload.append('field', 'resume');
         formDataUpload.append('files', formData.resume);
 
-        const uploadResponse = await axios.post('https://promecha.onrender.com//api/upload', formDataUpload, {
+        const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             setUploadProgress(progress);
