@@ -51,7 +51,7 @@
 //         push('/login');
 //         return;
 //       } else {
-//         const response = await fetch("https://promecha.onrender.com/api/users/me", {
+//         const response = await fetch("http://localhost:1337/api/users/me", {
 //           headers: {
 //             Authorization: `Bearer ${parsetoken.jwt}`,
 //           },
@@ -289,7 +289,7 @@
 // //         push('/login');
 // //         return;
 // //       } else {
-// //         const response = await fetch("https://promecha.onrender.com/api/users/me", {
+// //         const response = await fetch("http://localhost:1337/api/users/me", {
 // //           headers: {
 // //             Authorization: `Bearer ${parsetoken.jwt}`,
 // //           },

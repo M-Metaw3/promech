@@ -27,12 +27,12 @@ interface MultiActionAreaCardProps {
 
 export default function MultiActionAreaCard({ track }: MultiActionAreaCardProps) {
   return (
-    <Card component={Link} href={`/tracks/${track.id}`} sx={{ maxWidth: 345 }}>
+    <Card sx={{display: 'flex',flexWrap: 'wrap',maxWidth: 345 }} component={Link} href={`/tracks/${track.id}`} >
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={track?.attributes?.mainImgSrc?.data?.attributes?.url ? `https://promecha.onrender.com${track.attributes.mainImgSrc.data.attributes.url}` : ''}
+          image={track?.attributes?.mainImgSrc?.data?.attributes?.url ? `http://localhost:1337${track.attributes.mainImgSrc.data.attributes.url}` : ''}
           alt="green iguana"
         />
         <CardContent>

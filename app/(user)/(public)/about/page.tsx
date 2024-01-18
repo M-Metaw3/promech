@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
 import { Box, Container, Grid, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
@@ -115,7 +116,7 @@ const AboutPage = async() => {
 
 
 
-    // const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`,{
+    // const response = await fetch(`http://localhost:1337/api/about-uses?populate=image`,{
 
     // next:{
     //     revalidate: 0
@@ -127,10 +128,14 @@ const AboutPage = async() => {
     let data = null;
   
     try {
-      const response = await fetch(`https://promecha.onrender.com/api/about-uses?populate=image`);
+      const response = await fetch(`http://localhost:1337/api/about-uses?populate=image`,{
+        next:{
+        revalidate: 0
+    }
+      });
       
         const jsonData = await response.json();
-        data = jsonData?.data ?? null; // Set null if data is not present or if any other optional chaining fails
+        data = jsonData ?? null; // Set null if data is not present or if any other optional chaining fails
    
     } catch (error :any) {
       console.error('Fetch error:', error);
@@ -143,7 +148,7 @@ const AboutPage = async() => {
                 <Grid container columnSpacing={4} rowGap={2}>
                     <Grid item xs={12} md={7}>
                         <Typography typography={{ xs: 'h4', sm: 'h3' }} fontWeight='600 !important' color='text.secondary' marginBottom={3}>
-                        {data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.question:(
+                        {data?.data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.question:(
                             <>
                                 <Typography typography={{ xs: 'h4', sm: 'h3' }} fontWeight='600 !important' color='text.secondary' marginBottom={3}>
                                     Who is &nbsp;
@@ -158,14 +163,14 @@ const AboutPage = async() => {
     overflowWrap: "break-word", 
     wordWrap: "break-word" 
   }} color='#000' fontWeight={700} fontSize='18px' textAlign='justify' word-wrap= "break-word" lineHeight='45px'   maxWidth="300px" >
-                        {data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.answers:"        Promech Academy provides opportunities for individuals, startups, small and medium-sized companies to learn and develop concepts, skills, and applications related to Industry 4.0 technologies. The academy also focuses on teaching students these technologies to create job opportunities and promote industrial engineering innovations while enhancing the capabilities of industrial companies and encouraging the local industrial economy. The courses are divided into several tracks: Mechanical and Reverse Engineering, Fabrication, and Sheet Metal."}
+                        {data?.data&&data?.data[0]&&data?.data[0]?.attributes?data?.data[0]?.attributes?.answers:"        Promech Academy provides opportunities for individuals, startups, small and medium-sized companies to learn and develop concepts, skills, and applications related to Industry 4.0 technologies. The academy also focuses on teaching students these technologies to create job opportunities and promote industrial engineering innovations while enhancing the capabilities of industrial companies and encouraging the local industrial economy. The courses are divided into several tracks: Mechanical and Reverse Engineering, Fabrication, and Sheet Metal."}
                         </Typography>
                   
                     </Grid>
                     <Grid item xs={12} md={5} display='flex' alignItems='center' justifyContent='center' position='relative' overflow={{ xs: 'hidden', lg: 'unset' }}>
                         <Image
                             alt='company'
-                            src={data?.data[0]?`https://promecha.onrender.com${data?.data[0]?.attributes.image.data.attributes.url}`:''}
+                            src={data?.data&&data?.data[0]?`http://localhost:1337${data?.data[0]?.attributes.image.data.attributes.url}`:''}
                             width={400} height={400}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -206,7 +211,7 @@ const AboutPage = async() => {
                         <Stack gap={3} >
                             <Typography variant='h3' fontWeight={600} color='primary.main'>
                             
-                            {data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.question:"What do we do?"}
+                            {data?.data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.question:"What do we do?"}
                             
                             </Typography>
                             {/* <Typography variant='h5' fontWeight={500} color='primary.main'>Endorsements on All Career Levels</Typography> */}
@@ -217,7 +222,7 @@ const AboutPage = async() => {
   }} component='div' lineHeight='35px' color='#000n' textAlign='justify'>
 
 
-                            {data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.answers:"            We empower Egyptian and Arab manufacturers to revolutionize the manufacturing industry in the Middle East and prosper our economies and communities by training and educating individuals and entities on the world’s top manufacturing technologies."}
+                            {data?.data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.answers:"            We empower Egyptian and Arab manufacturers to revolutionize the manufacturing industry in the Middle East and prosper our economies and communities by training and educating individuals and entities on the world’s top manufacturing technologies."}
 
 
                             
@@ -227,8 +232,8 @@ const AboutPage = async() => {
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
                             alt='mission'
-                            src={data?.data[1]?`https://promecha.onrender.com${data?.data[1]?.attributes.image.data.attributes.url}`:''}
-                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`https://promecha.onrender.com${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/mission.jpg'}
+                            src={data?.data&&data?.data[1]?`http://localhost:1337${data?.data[1]?.attributes.image.data.attributes.url}`:''}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/mission.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -244,9 +249,9 @@ const AboutPage = async() => {
                 <Grid container alignItems='center' columnSpacing={{ md: 4, lg: 8, xl: 12 }} rowGap={2}>
                     <Grid item xs={12} md={6} display='flex' alignItems='center' justifyContent='center' position='relative'>
                         <Image
-                       src={data?.data[2]?`https://promecha.onrender.com${data?.data[2]?.attributes.image.data.attributes.url}`:''}
+                       src={data?.data&&data?.data[2]?`http://localhost:1337${data?.data[2]?.attributes.image.data.attributes.url}`:''}
                        alt={""}
-                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`https://promecha.onrender.com${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/vision.jpg'}
+                            // src={data&&data?.data[1]&&data?.data[1]?.attributes&&data?.data?.attributes?.image?`http://localhost:1337${data?.data[1]?.attributes?.image?.data.attributes.url}`:'/about/vision.jpg'}
                             width={470} height={470}
                             style={{
                                 objectFit: 'cover', zIndex: 1,
@@ -256,7 +261,7 @@ const AboutPage = async() => {
                     <Grid item xs={12} md={6} display='flex' flexDirection='column' gap={6}>
                         <Stack gap={3} >
                             <Typography variant='h3' fontWeight={600} color='primary.main'>How do we do it?
-                            {data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.question:"How do we do it?"}
+                            {data?.data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.question:"How do we do it?"}
                             
                             
                             
@@ -269,7 +274,7 @@ const AboutPage = async() => {
   }} component='div' lineHeight='35px' color='#000n' textAlign='justify'>
 
 
-                            {data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.answers:(
+                            {data?.data&&data?.data[2]&&data?.data[2]?.attributes?data?.data[2]?.attributes?.answers:(
                             <Typography component='div' lineHeight='35px' color='#000n' textAlign='justify'>
                                  By having skilled and experienced mentors to train and guide our candidates on the world’s latest manufacturing technologies through providing customized and condensed training tracks in different manufacturing fields like:
                                  <ol>

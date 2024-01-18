@@ -12,7 +12,7 @@ import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCale
 import NavLink from '@/components/NavLink';
 import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
-import { setAuthTokenCookie, getAuthTokenCookie } from '../../utils/auth';
+import { setAuthTokenCookie, getAuthTokenCookie, removeAuthTokenCookie } from '../../utils/auth';
 
 const drawerWidth = 260;
 
@@ -23,7 +23,14 @@ interface Props {
 export default function UserAccountLayout({ children }: { children: React.ReactNode }) {
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 	const [username, setusername] = React.useState('');
+	const [image, setimage] = React.useState('');
 
+    const handleLogout = () => {
+        // Clear the authentication token from cookies
+        removeAuthTokenCookie();
+        // Redirect to the login page or any other desired page
+        push('/login');
+    };
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
@@ -54,11 +61,6 @@ export default function UserAccountLayout({ children }: { children: React.ReactN
 			title: 'Profile',
 			href: '/account/profile',
 			icon: <PermContactCalendarOutlinedIcon />
-		},
-		{
-			title: 'Log Out',
-			href: '/Logout',
-			icon: <PermContactCalendarOutlinedIcon />
 		}
 	]
 	const { push } = useRouter();
@@ -72,15 +74,56 @@ React.useEffect(()=>{
 	}else{
 		const parsetoken = tokenString && JSON.parse(tokenString)
 		setusername(parsetoken.user.username)
+		
+		console.log()
 	}
 },[])
-	// const tokenString =  getAuthTokenCookie();
-	// console.log(tokenString)
-	// if (!tokenString) {
-	//   toast.error('You must login to take this service');
-	//   push('/login')
-	//   return;
-	// }
+
+
+
+
+
+
+
+
+React.useEffect(() => {
+	const fetchData = async () => {
+	  try {
+		const tokenString = getAuthTokenCookie();
+  
+		if (!tokenString) {
+		  // Redirect to login if no token is found
+		  push('/login');
+		  return;
+		}
+  
+		const parsetoken = JSON.parse(tokenString);
+		console.log(parsetoken.jwt);
+  
+		const response = await fetch("http://localhost:1337/api/users/me/?populate=profile&populate=resume", {
+		  headers: {
+			Authorization: `Bearer ${parsetoken.jwt}`,
+		  },
+		});
+  
+		if (!response.ok) {
+		  // Handle non-successful response (e.g., unauthorized)
+		  console.error(`Fetch failed with status: ${response.status}`);
+		  return;
+		}
+  
+		const datares = await response.json();
+		setimage(datares?.profile?.url);
+	  } catch (error) {
+		// Handle any other errors that might occur during the fetch
+		console.error("An error occurred during data fetching:", error);
+	  }
+	};
+  
+	fetchData();
+  }, []);
+  
+
 
 	const drawer = (
 		<Stack padding={2} gap='20px'>
@@ -101,6 +144,7 @@ React.useEffect(()=>{
 							}
 						}}
 					>
+						
 						<ListItemButton>
 							<ListItemIcon>
 								{link.icon}
@@ -109,6 +153,12 @@ React.useEffect(()=>{
 						</ListItemButton>
 					</ListItem>
 				))}
+					<ListItemButton onClick={handleLogout}>
+							<ListItemIcon>
+							<PermContactCalendarOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary='LogOut' />
+						</ListItemButton>
 			</List>
 		</Stack>
 	);
@@ -175,7 +225,7 @@ React.useEffect(()=>{
 					<Typography variant="h4" fontWeight={500} noWrap>
 						Hi,{username}
 					</Typography>
-					<Avatar src={'//'} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
+					<Avatar src={image?`http://localhost:1337${image}`:''} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
 				</Toolbar>
 			</AppBar>
 			<br />

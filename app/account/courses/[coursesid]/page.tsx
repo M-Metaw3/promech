@@ -92,7 +92,7 @@
 //       const user =token.user.id
 //       try {
 //         // Step 1: Post data to the taskanswers API
-//         const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
+//         const taskanswerResponse = await axios.post('http://localhost:1337/api/taskanswers', {
 //           data: {
 //             task: id,
 //             users_permissions_user: user, // Make sure to define 'user' appropriately
@@ -110,7 +110,7 @@
 //             formDataUpload.append('field', 'answerfile');
 //             formDataUpload.append('files', selectedFile);
 
-//             const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
+//             const uploadResponse = await axios.post('http://localhost:1337/api/upload', formDataUpload, {
 //               onUploadProgress: (progressEvent) => {
 //                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
 //                 setUploadProgress(progress);
@@ -152,7 +152,7 @@
 //    React.useEffect(() => {
 //         const fetchData = async () => {
 //                 const response = await fetch(`
-//                 https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+//                 http://localhost:1337/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
 //             `);
 //                 const datares = await response.json()
 //     const coursee = await datares?.data;
@@ -205,7 +205,7 @@
 //             console.log(token.user.id);
 //             console.log(id);
 //             const response = await axios.post(
-//               "https://promecha.onrender.com/api/attendaces",
+//               "http://localhost:1337/api/attendaces",
 //               {
 //                 data: {
 //                   user: token.user.id,
@@ -254,7 +254,7 @@
               
 //                 const response = await fetch(`
       
-//                 https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
+//                 http://localhost:1337/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
 //                 `);
 //                 const datares = await response.json()
 //                 setisattend(datares)
@@ -284,7 +284,7 @@
       
               
 //                 const response = await fetch(`
-//                 https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+//                 http://localhost:1337/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
           
 //                 `);
 //                 const datares = await response.json()
@@ -340,7 +340,7 @@
 //                     src={
 //                       course?.attributes?.userimage?.data &&
 //                       course?.attributes?.userimage.data?.attributes.url
-//                         ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
+//                         ? `http://localhost:1337${course.attributes?.userimage.data?.attributes.url}`
 //                         : ""
 //                     }
 //                     alt={course?.user?.name}
@@ -580,7 +580,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import Link from 'next/link';
 
-
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import {
   Avatar,
   Button,
@@ -739,6 +741,63 @@ interface Task {
   };
 }
 
+interface UserData {
+  id: number;
+  attributes: {
+    username: string;
+    email: string;
+    // Other user attributes...
+  };
+}
+
+interface TaskData {
+  id: number;
+  attributes: {
+    details: string;
+    // Other task attributes...
+  };
+}
+interface TaskResponse {
+  id: number;
+  attributes: {
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    finished: boolean | null;
+    users_permissions_user: {
+      data: {
+        id: number;
+        attributes: {
+          username: string;
+          email: string;
+          // Other user attributes...
+        };
+      };
+    };
+    task: {
+      data: {
+        id: number;
+        attributes: {
+          details: string;
+          // Other task attributes...
+        };
+      };
+    };
+  };
+}
+
+interface ApiResponse {
+  data: TaskResponse[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -764,7 +823,13 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
   const [tasks, settasks] = useState<Task[]>([]);
   const [lessoncount, setlessoncount] = useState<any>(0);
   const [lessonattendance, setlessonattendance] = useState<any>(0);
+  const [taskanswer, settaskanswer] = useState<any>([]);
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -818,10 +883,11 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
       const user = token.user.id;
       try {
         // Step 1: Post data to the taskanswers API
-        const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
+        const taskanswerResponse = await axios.post('http://localhost:1337/api/taskanswers', {
           data: {
             task: id,
-            users_permissions_user: user, // Make sure to define 'user' appropriately
+            users_permissions_user: user,
+            finished:isChecked,
           },
         });
 
@@ -837,7 +903,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
             formDataUpload.append('field', 'answerfile');
             formDataUpload.append('files', selectedFile);
 
-            const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
+            const uploadResponse = await axios.post('http://localhost:1337/api/upload', formDataUpload, {
               onUploadProgress: (progressEvent) => {
                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
                 setUploadProgress(progress);
@@ -872,6 +938,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
     setValue(newValue);
   };
 
+  const lessonData: Attendance | null = isattend;
   const { push } = useRouter();
   const handelerattendanc = async (id: string, i: string, o: string) => {
     console.log(id);
@@ -905,7 +972,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
         console.log(token.user.id);
         console.log(id);
         const response = await axios.post(
-          "https://promecha.onrender.com/api/attendaces",
+          "http://localhost:1337/api/attendaces",
           {
             data: {
               user: token.user.id,
@@ -922,8 +989,9 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
           //   },
           // }
         );
-if(response.status==201){
-  alert("done")
+if(response.status==200){
+alert("thank you for atteding the instructor will verify your attendance")
+window.location.reload();
 }
 
       }
@@ -970,7 +1038,7 @@ const doesLessonExist = (lessonId: string) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`
-        https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+        http://localhost:1337/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
       `);
       const datares = await response.json()
       const coursee = await datares?.data;
@@ -993,7 +1061,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
+          http://localhost:1337/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
         `);
         const datares = await response.json()
         setisattend(datares)
@@ -1016,7 +1084,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+          http://localhost:1337/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
         `);
         const datares = await response.json()
         settasks(datares.data)
@@ -1032,6 +1100,43 @@ console.log(course?.attributes?.chapters?.data)
     // Handle upload logic for the specific task
     console.log("Upload to Task:", taskId);
   };
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const tokenString = getAuthTokenCookie();
+
+      const parsetoken = tokenString && JSON.parse(tokenString)
+
+      console.log(parsetoken?.user?.id)
+      if (!tokenString) {
+        toast.error('You must login to take this service');
+        push('/login')
+        return;
+      } else {
+        const response = await fetch(`
+        http://localhost:1337/api/taskanswers/?populate[users_permissions_user][populate]=true&filters[users_permissions_user]=${parsetoken?.user?.id}&populate[task][populate]=true
+        `);
+        const datares = await response.json()
+       settaskanswer(datares)
+        
+      }
+    }
+    fetchData();
+  }, []);
+
+  function isTaskFinished(taskId: number): boolean | null {
+
+    const task = taskanswer?.data?.find((item:TaskResponse) => item?.attributes?.task?.data?.id === taskId);
+  console.log(task)
+    if (task) {
+      return task.attributes.finished;
+    }
+  
+    return null; // Task not found
+  }
+ 
 
   return (
     <>
@@ -1049,7 +1154,7 @@ console.log(course?.attributes?.chapters?.data)
                   src={
                     course?.attributes?.userimage?.data &&
                     course?.attributes?.userimage.data?.attributes.url
-                      ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
+                      ? `http://localhost:1337${course.attributes?.userimage.data?.attributes.url}`
                       : ""
                   }
                   alt={course?.user?.name}
@@ -1089,8 +1194,25 @@ console.log(course?.attributes?.chapters?.data)
                 </TabPanel>
                 <TabPanel value="3">
                   <div>
-                    {tasks.map((task) => (
+                    {tasks?.map((task) => (
+                      
                       <Card key={task.id} sx={{ marginBottom: 2 }}>
+                         <FormGroup>
+                         {isTaskFinished(parseInt(task.id))?(<>
+                         
+                          <FormControlLabel
+      control={<Checkbox disabled checked={true} onChange={handleCheckboxChange} />}
+      label="submited"
+    />
+                         </>):(
+
+<FormControlLabel
+control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
+label="Required"
+/>
+                         )} 
+  
+                        </FormGroup>
                         <CardContent>
                           <Typography variant="h6">
                             Task Details: {task.attributes.details}
@@ -1103,17 +1225,17 @@ console.log(course?.attributes?.chapters?.data)
                             Chapter Details:
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
-                            Name: {task.attributes.chapter.data.attributes.name}
+                            Name: {task?.attributes?.chapter?.data?.attributes.name}
                           </Typography>
                           <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
                             File Details:
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
-                            Name: {task.attributes.file.data.attributes.name}
+                            Name: {task?.attributes?.file?.data?.attributes?.name}
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             
-                            <Button  component={Link} href={`https://promecha.onrender.com${task.attributes.file.data.attributes.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
+                            <Button  component={Link} href={`http://localhost:1337${task?.attributes?.file?.data?.attributes?.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
                               
       Download pdf quize
       <VisuallyHiddenInput type="file" />
@@ -1129,7 +1251,9 @@ console.log(course?.attributes?.chapters?.data)
                             id={`file-input-${task.id}`}
                           />
 <label htmlFor={`file-input-${task.id}`}>
-  <Button
+{!isTaskFinished(parseInt(task.id))?(
+  <>
+    <Button
     variant="contained"
     component="span"
     color="primary"
@@ -1138,32 +1262,45 @@ console.log(course?.attributes?.chapters?.data)
   >
     Select File
   </Button>
+  
+  </>
+):''}
+
+
 </label>
 
 
-                          {selectedFile && (
-                            <div>
-                              <LinearProgress
-                                variant="determinate"
-                                value={uploadProgress}
-                                sx={{ marginBottom: 2 }}
-                              />
-                              {isUploading ? (
-                                <Typography variant="body2">
-                                  Uploading: {uploadProgress}%
-                                </Typography>
-                              ) : (
-                                <Button
-                                  variant="contained"
-                                  color="primary"
-                                  onClick={() => handleSubmit(task.id)}
-                                  sx={{ marginBottom: 2 }}
-                                >
-                                  Submit
-                                </Button>
-                              )}
-                            </div>
-                          )}
+
+
+{isTaskFinished(parseInt(task?.id))?"":(
+
+                          <>
+ { isUploading?   ( 
+ <>
+ <LinearProgress
+      variant="determinate"
+      value={uploadProgress}
+      sx={{ marginBottom: 2 }}
+    />
+   
+      <Typography variant="body2">
+        Uploading: {uploadProgress}%
+      </Typography>
+      </>):''}
+
+        <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleSubmit(task.id)}
+        sx={{ marginBottom: 2 }}
+      >
+        Submit
+      </Button>
+      </>         )} 
+
+
+
+
                         </div>
                       </Card>
                     ))}
@@ -1171,26 +1308,30 @@ console.log(course?.attributes?.chapters?.data)
                 </TabPanel>
                 <TabPanel value="2">
                   {course?.attributes?.chapters?.data.map((chapter:any, i:any) => (
-                    <div key={chapter.id}>
-                      <Typography variant="h6">
-                        <Typography variant="h5">
-                          {i + 1}
-                        </Typography>
-                        {chapter.attributes.name || "Chapter Name Not Available"}
+                    <div  key={chapter.id}>
+                      <div style={{display:"flex"}}>
+                     
+                        <Typography sx={{color:"#12595C",pading:"15px"}}  variant="h3">
+                          {i + 1} :
+                        </Typography >
+                      <Typography variant="h3" sx={{color:"#12595C",fontWeight:"500"}}>
+                        {chapter?.attributes?.name || "Chapter Name Not Available"}
                       </Typography>
-                      <Typography color="secondary">
-                        {moment(chapter.attributes.createdAt).fromNow() || "Not Available"}
-                      </Typography>
-                      {chapter.attributes.lessons?.data.map((lesson: any) => (
-    <div key={lesson.id}>
-      <Typography variant="h6">
+                      
+                      </div>
+                      {chapter.attributes.lessons?.data.map((lesson: any ,i:any) => (
+    <div style={{display:"flex",justifyContent:"space-between", margin:"15px"}}  key={lesson.id}>
+         <Typography  sx={{color:"#28AFB0"}} variant="h5">
+        {i+1} :
+      </Typography>
+      <Typography sx={{color:"#28AFB0"}} variant="h6">
         {lesson?.attributes?.name || "Lesson Name Not Available"}
       </Typography>
 
       {doesLessonExist(lesson.id) === 1 ? (
         <Button variant="contained" disabled color='success'>you attended</Button>
       ) : doesLessonExist(lesson.id) === 2 ? (
-        <Button variant="contained">pending</Button>
+        <Button sx={{backgroundColor:'grey' }} variant="contained">pending</Button>
       ) : (
         <Button
           variant="contained"
@@ -1214,6 +1355,7 @@ console.log(course?.attributes?.chapters?.data)
 
 
 {/* <ProgressBarCourse courseData={  course }  lessonData={ isattend}/> */}
+<ProgressBarCourse courseData={course} lessonData={lessonData} />
 {/* <ProgressBarCourse lessoncount={  lessoncount }  attendance={  lessonattendance}/> */}
 
 

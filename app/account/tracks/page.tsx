@@ -24,7 +24,7 @@ const MyComponent =  () => {
     const fetchData = async () => {
 
       const response = await fetch(
-        `https://promecha.onrender.com/api/tracks/?populate=mainImgSrc`
+        `http://localhost:1337/api/tracks/?populate=mainImgSrc`
       );
       const datares = await response.json();
       console.log(datares?.data)
@@ -36,11 +36,11 @@ const MyComponent =  () => {
 
 
   return (
-<Grid container spacing={5}>
+<Grid  container spacing={5}>
  {
 tracks?.map((el)=>(
 
-  <Grid key={el.id}  item xs={4}>
+  <Grid  key={el.id}  item xs={4}>
   <CardTracks track={el}/>
   </Grid>
 

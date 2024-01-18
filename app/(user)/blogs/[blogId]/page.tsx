@@ -47,7 +47,7 @@
 //             min: 9
 //         }
 //     ]
-//     const response = await fetch(`https://promecha.onrender.com/api/blogs/${params?.blogId}?populate=images`
+//     const response = await fetch(`http://localhost:1337/api/blogs/${params?.blogId}?populate=images`
 //     ,{
 //     next:{
 //         revalidate: 60
@@ -58,7 +58,7 @@
 
 
 
-//     const responseall = await fetch(`https://promecha.onrender.com/api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`
+//     const responseall = await fetch(`http://localhost:1337/api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`
 //     ,{
 
 //     next:{
@@ -75,7 +75,7 @@
 //                 <Grid container columnSpacing={3} rowGap={3}>
 //                     <Grid item xs={12} md={10} display='flex' flexDirection='column' gap={4}>
 //                         <Image
-//                            src={dataapi&&dataapi?.attributes&&dataapi?.attributes?.images&&dataapi&&dataapi?.attributes?.images?.data[0]&&dataapi?.attributes?.images?.data[0]?.attributes?.url?`https://promecha.onrender.com${dataapi?.attributes?.images?.data[0]?.attributes?.url}`:''}alt={blog.title}
+//                            src={dataapi&&dataapi?.attributes&&dataapi?.attributes?.images&&dataapi&&dataapi?.attributes?.images?.data[0]&&dataapi?.attributes?.images?.data[0]?.attributes?.url?`http://localhost:1337${dataapi?.attributes?.images?.data[0]?.attributes?.url}`:''}alt={blog.title}
 //                             width={900} height={400}
 //                             style={{
 //                                 width: '100%', height: 333,
@@ -172,7 +172,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
       min: 9,
     },
   ];
-  const response = await fetch(`https://promecha.onrender.com/api/blogs/${params?.blogId}?populate=images`, {
+  const response = await fetch(`http://localhost:1337/api/blogs/${params?.blogId}?populate=images`, {
     next: {
       revalidate: 60,
     },
@@ -181,7 +181,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
   const dataapi = await data?.data;
 
   const responseall = await fetch(
-    `https://promecha.onrender.com/api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`,
+    `http://localhost:1337/api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`,
     {
       next: {
         revalidate: 0,
@@ -204,7 +204,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
               dataapi &&
               dataapi?.attributes?.images?.data[0] &&
               dataapi?.attributes?.images?.data[0]?.attributes?.url
-                ? `https://promecha.onrender.com${dataapi?.attributes?.images?.data[0]?.attributes?.url}`
+                ? `http://localhost:1337${dataapi?.attributes?.images?.data[0]?.attributes?.url}`
                 : ''
             }
             alt={blog.title}

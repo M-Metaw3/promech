@@ -35,7 +35,7 @@
 //     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //         e.preventDefault();
 //       try{
-//         const careersResponse = await axios.post('https://promecha.onrender.com//api/contacts', {
+//         const careersResponse = await axios.post('http://localhost:1337//api/contacts', {
 //             data: formData,
 //           });
     
@@ -161,7 +161,7 @@
 //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     try {
-//       const careersResponse = await axios.post('https://promecha.onrender.com//api/contacts', {
+//       const careersResponse = await axios.post('http://localhost:1337//api/contacts', {
 //         data: formData,
 //       });
 
@@ -277,7 +277,7 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const careersResponse = await axios.post('https://promecha.onrender.com/api/contacts', {
+      const careersResponse = await axios.post('http://localhost:1337/api/contacts', {
         data: formData,
       });
       const careersData = careersResponse;

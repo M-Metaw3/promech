@@ -111,7 +111,7 @@ interface CustomCardProps {}
 const useStyles = makeStyles((theme) => ({
   header: {
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.primary.main,
+
     color: theme.palette.primary.contrastText,
     // Add other header styles as needed
   },
@@ -158,7 +158,7 @@ const CustomCard: FC<CustomCardProps> = () => {
         </div>
         <div className={classes.arrowRight}>
           <IconButton aria-label="arrow">
-            <ArrowForwardIcon />
+            {/* <ArrowForwardIcon /> */}
           </IconButton>
         </div>
       </div>

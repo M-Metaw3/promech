@@ -141,14 +141,7 @@ const AccountSettings: FC<AccountSettingsProps> = () => {
         >
           Edit Profile
         </Button>
-        <Button
-          className={classes.button}
-          startIcon={<SettingsIcon className={classes.icon} />}
-          component={Link}
-          href='/account/profile/accountsetting'
-        >
-          Account Setting
-        </Button>
+  
         <Button
           className={classes.button}
           startIcon={<HelpIcon className={classes.icon} />}
@@ -156,12 +149,6 @@ const AccountSettings: FC<AccountSettingsProps> = () => {
           href='/account/profile/helpdesk'
         >
           Helpdesk
-        </Button>
-        <Button
-          className={classes.button}
-          startIcon={<ExitToAppIcon className={classes.icon} />}
-        >
-          Logout
         </Button>
       </Paper>
     </Grid>
