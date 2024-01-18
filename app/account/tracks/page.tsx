@@ -24,7 +24,7 @@ const MyComponent =  () => {
     const fetchData = async () => {
 
       const response = await fetch(
-        `http://localhost:1337/api/tracks/?populate=mainImgSrc`
+        `https://promecha.onrender.com/api/tracks/?populate=mainImgSrc`
       );
       const datares = await response.json();
       console.log(datares?.data)

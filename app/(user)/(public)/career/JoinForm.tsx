@@ -51,7 +51,7 @@
 //     //         // // formData.append('phone', phone);
 //     //         // formData.append('email', formData.email);
 //     //         // formData.append('message', formData.message);
-//     //       await  fetch('http://localhost:1337//api/careers', {
+//     //       await  fetch('https://promecha.onrender.com//api/careers', {
 //     //             method: 'POST',
 //     //             headers: {
 //     //               'Content-Type': 'application/json',
@@ -85,7 +85,7 @@
       
 //         try {
 //           // Step 1: Post data to the careers API
-//           const careersResponse = await fetch('http://localhost:1337//api/careers', {
+//           const careersResponse = await fetch('https://promecha.onrender.com//api/careers', {
 //             method: 'POST',
 //             headers: {
 //               'Content-Type': 'application/json',
@@ -108,7 +108,7 @@
 //             formDataUpload.append('field', 'resume');
 //             formDataUpload.append('files', formData.resume);
       
-//             const uploadResponse = await fetch('http://localhost:1337//api/upload', {
+//             const uploadResponse = await fetch('https://promecha.onrender.com//api/upload', {
 //               method: 'POST',
 //               body: formDataUpload,
 //             });
@@ -247,7 +247,7 @@
 //       setIsLoading(true);
 
 //       // Step 1: Post data to the careers API
-//       const careersResponse = await axios.post('http://localhost:1337//api/careers', {
+//       const careersResponse = await axios.post('https://promecha.onrender.com//api/careers', {
 //         data: formData,
 //       });
 
@@ -264,7 +264,7 @@
 //         formDataUpload.append('field', 'resume');
 //         formDataUpload.append('files', formData.resume);
 
-//         const uploadResponse = await axios.post('http://localhost:1337//api/upload', formDataUpload, {
+//         const uploadResponse = await axios.post('https://promecha.onrender.com//api/upload', formDataUpload, {
 //           onUploadProgress: (progressEvent) => {
 //             const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
 //             setUploadProgress(progress);
@@ -487,7 +487,7 @@
 //       setIsLoading(true);
 
 //       // Step 1: Post data to the careers API
-//       const careersResponse = await axios.post('http://localhost:1337//api/careers', {
+//       const careersResponse = await axios.post('https://promecha.onrender.com//api/careers', {
 //         data: formData,
 //       });
 
@@ -504,7 +504,7 @@
 //         formDataUpload.append('field', 'resume');
 //         formDataUpload.append('files', formData.resume);
 
-//         const uploadResponse = await axios.post('http://localhost:1337//api/upload', formDataUpload, {
+//         const uploadResponse = await axios.post('https://promecha.onrender.com//api/upload', formDataUpload, {
 //           onUploadProgress: (progressEvent) => {
 //             const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
 //             setUploadProgress(progress);
@@ -701,7 +701,7 @@ const JoinForm: React.FC = () => {
     try {
       setIsLoading(true);
       // Step 1: Post data to the careers API
-      const careersResponse = await axios.post('http://localhost:1337/api/careers', {
+      const careersResponse = await axios.post('https://promecha.onrender.com/api/careers', {
         data: formData,
       });
       const careersData = careersResponse.data;
@@ -716,7 +716,7 @@ const JoinForm: React.FC = () => {
         formDataUpload.append('field', 'resume');
         formDataUpload.append('files', formData.resume);
 
-        const uploadResponse = await axios.post('http://localhost:1337/api/upload', formDataUpload, {
+        const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             setUploadProgress(progress);

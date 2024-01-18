@@ -100,7 +100,7 @@ React.useEffect(() => {
 		const parsetoken = JSON.parse(tokenString);
 		console.log(parsetoken.jwt);
   
-		const response = await fetch("http://localhost:1337/api/users/me/?populate=profile&populate=resume", {
+		const response = await fetch("https://promecha.onrender.com/api/users/me/?populate=profile&populate=resume", {
 		  headers: {
 			Authorization: `Bearer ${parsetoken.jwt}`,
 		  },
@@ -225,7 +225,7 @@ React.useEffect(() => {
 					<Typography variant="h4" fontWeight={500} noWrap>
 						Hi,{username}
 					</Typography>
-					<Avatar src={image?`http://localhost:1337${image}`:''} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
+					<Avatar src={image?`https://promecha.onrender.com${image}`:''} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
 				</Toolbar>
 			</AppBar>
 			<br />

@@ -138,7 +138,7 @@
 // 	];
 
 
-//     const response = await fetch(`http://localhost:1337/api/herosections/?populate=image`,{
+//     const response = await fetch(`https://promecha.onrender.com/api/herosections/?populate=image`,{
 
 //     next:{
 //         revalidate: 0
@@ -148,7 +148,7 @@
 //     const dataapi=  await data?.data?.attributes
 // 	// console.log(data?.data[0]?.attributes?.image?.data.attributes.url)
 // 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
-//     const responsetracks = await fetch(`http://localhost:1337/api/tracks/?pagination[limit]=2&populate=mainImgSrc&populate=courses`,{
+//     const responsetracks = await fetch(`https://promecha.onrender.com/api/tracks/?pagination[limit]=2&populate=mainImgSrc&populate=courses`,{
 
 //     next:{
 //         revalidate: 0
@@ -158,7 +158,7 @@
 //     const dataapitracks=  await data?.data?.attributes
 	
 // 	// console.log(datatracks?.data[0]?.attributes?.image?.data.attributes.url)
-// 	const responsecourses = await fetch(`http://localhost:1337/api/courses/?pagination[limit]=3&populate=imgSrc&populate=chapters&populate=userimage`, {
+// 	const responsecourses = await fetch(`https://promecha.onrender.com/api/courses/?pagination[limit]=3&populate=imgSrc&populate=chapters&populate=userimage`, {
 //         next: {
 //             revalidate: 0
 //         }
@@ -170,7 +170,7 @@
 
 
 // 	/////////////////////////////////////////////////////////////////////////////////////
-// 	const responseSection = await fetch(`http://localhost:1337/api/sectionsinhomes/?populate=imagesection`, {
+// 	const responseSection = await fetch(`https://promecha.onrender.com/api/sectionsinhomes/?populate=imagesection`, {
 //         next: {
 //             revalidate: 0
 //         }
@@ -224,7 +224,7 @@
 // 						</Grid>
 // 						<Grid item xs={12} md={5} display='flex' justifyContent={{ xs: 'center', md: 'flex-end' }}>
 // 							<Image alt='ellipse' 
-// 							src={data&&data?.data[0]&&data?.data[0]?.attributes&&data?.data[0]?.attributes?.image?`http://localhost:1337${data?.data[0]?.attributes?.image?.data.attributes.url}`:'/home/ellipse.jpg'}
+// 							src={data&&data?.data[0]&&data?.data[0]?.attributes&&data?.data[0]?.attributes?.image?`https://promecha.onrender.com${data?.data[0]?.attributes?.image?.data.attributes.url}`:'/home/ellipse.jpg'}
 						
 // 								width={405} height={405}
 // 								style={{
@@ -264,7 +264,7 @@
 // 							<Grid item xs={2} md={1}>
 // 								<img alt='solutions'
 								
-// 								src={el?.attributes?.imagesection?.data?.attributes?.url?`http://localhost:1337${el?.attributes?.imagesection?.data?.attributes?.url}`:'/home/solutions.jpg'}
+// 								src={el?.attributes?.imagesection?.data?.attributes?.url?`https://promecha.onrender.com${el?.attributes?.imagesection?.data?.attributes?.url}`:'/home/solutions.jpg'}
 // 								 width='100%' height='auto' style={{ objectFit: 'cover' }} />
 // 							</Grid>
 // 							<Grid item xs={2} md={1} display='flex' flexDirection='column' alignItems='flex-start' gap={2}>
@@ -301,7 +301,7 @@
 // 				</Container>
 				
 
-// 				{/* <Box component='img' alt='group1' src={el?.attributes?.imagesection?.data?.attributes?.url?`http://localhost:1337${el?.attributes?.imagesection?.data?.attributes?.url}`:''}
+// 				{/* <Box component='img' alt='group1' src={el?.attributes?.imagesection?.data?.attributes?.url?`https://promecha.onrender.com${el?.attributes?.imagesection?.data?.attributes?.url}`:''}
 // 					sx={{
 // 						position: 'absolute', left: 0,
 // 						top: { xs: 2*8, sm: 4*8, md: 6*8, lg: 8*8 }
@@ -383,7 +383,7 @@
 // 								}}
 // 							>
 // 								<Image
-// 									src={track&&track?.attributes&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url?`http://localhost:1337${track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url}`:''}
+// 									src={track&&track?.attributes&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url?`https://promecha.onrender.com${track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url}`:''}
 // 									alt={track?.attributes?.title}
 // 									width={500} height={500}
 // 									style={{
@@ -680,7 +680,7 @@ const page: FC = async() => {
 	];
 
 
-    const response = await fetch(`http://localhost:1337/api/herosections/?populate=image`,{
+    const response = await fetch(`https://promecha.onrender.com/api/herosections/?populate=image`,{
 
     next:{
         revalidate: 0
@@ -690,7 +690,7 @@ const page: FC = async() => {
     const dataapi=  await data?.data?.attributes
 	// console.log(data?.data[0]?.attributes?.image?.data.attributes.url)
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
-    const responsetracks = await fetch(`http://localhost:1337/api/tracks/?pagination[limit]=2&populate=mainImgSrc&populate=courses`,{
+    const responsetracks = await fetch(`https://promecha.onrender.com/api/tracks/?pagination[limit]=2&populate=mainImgSrc&populate=courses`,{
 
     next:{
         revalidate: 0
@@ -700,7 +700,7 @@ const page: FC = async() => {
     const dataapitracks=  await data?.data?.attributes
 	
 	// console.log(datatracks?.data[0]?.attributes?.image?.data.attributes.url)
-	const responsecourses = await fetch(`http://localhost:1337/api/courses/?pagination[limit]=3&populate=imgSrc&populate=chapters&populate=userimage`, {
+	const responsecourses = await fetch(`https://promecha.onrender.com/api/courses/?pagination[limit]=3&populate=imgSrc&populate=chapters&populate=userimage`, {
         next: {
             revalidate: 0
         }
@@ -712,7 +712,7 @@ const page: FC = async() => {
 
 
 	/////////////////////////////////////////////////////////////////////////////////////
-	const responseSection = await fetch(`http://localhost:1337/api/sectionsinhomes/?populate=imagesection`, {
+	const responseSection = await fetch(`https://promecha.onrender.com/api/sectionsinhomes/?populate=imagesection`, {
         next: {
             revalidate: 0
         }
@@ -788,7 +788,7 @@ const page: FC = async() => {
 						</Grid>
 						<Grid item xs={12} md={5} display='flex' justifyContent={{ xs: 'center', md: 'flex-end' }}>
 							{/* <Image alt='ellipse' 
-							src={data&&data?.data[0]&&data?.data[0]?.attributes&&data?.data[0]?.attributes?.image?`http://localhost:1337${data?.data[0]?.attributes?.image?.data.attributes.url}`:'/home/ellipse.jpg'}
+							src={data&&data?.data[0]&&data?.data[0]?.attributes&&data?.data[0]?.attributes?.image?`https://promecha.onrender.com${data?.data[0]?.attributes?.image?.data.attributes.url}`:'/home/ellipse.jpg'}
 						
 								width={405} height={405}
 								style={{
@@ -808,7 +808,7 @@ const page: FC = async() => {
     data?.data[0]?.attributes &&
     data?.data[0]?.attributes?.image &&
     data?.data[0]?.attributes?.image?.data?.attributes?.url
-      ? `http://localhost:1337${data?.data[0]?.attributes?.image?.data.attributes.url}`
+      ? `https://promecha.onrender.com${data?.data[0]?.attributes?.image?.data.attributes.url}`
       : '/home/ellipse.jpg'
   }
   width={405}
@@ -857,7 +857,7 @@ const page: FC = async() => {
 							<Grid item xs={2} md={1}>
 								<img alt='solutions'
 								
-								src={el?.attributes?.imagesection?.data?.attributes?.url?`http://localhost:1337${el?.attributes?.imagesection?.data?.attributes?.url}`:'/home/solutions.jpg'}
+								src={el?.attributes?.imagesection?.data?.attributes?.url?`https://promecha.onrender.com${el?.attributes?.imagesection?.data?.attributes?.url}`:'/home/solutions.jpg'}
 								 width='100%' height='auto' style={{ objectFit: 'cover' }} />
 							</Grid>
 							<Grid item xs={2} md={1} display='flex' flexDirection='column' alignItems='flex-start' gap={2}>
@@ -894,7 +894,7 @@ const page: FC = async() => {
 				</Container>
 				
 
-				{/* <Box component='img' alt='group1' src={el?.attributes?.imagesection?.data?.attributes?.url?`http://localhost:1337${el?.attributes?.imagesection?.data?.attributes?.url}`:''}
+				{/* <Box component='img' alt='group1' src={el?.attributes?.imagesection?.data?.attributes?.url?`https://promecha.onrender.com${el?.attributes?.imagesection?.data?.attributes?.url}`:''}
 					sx={{
 						position: 'absolute', left: 0,
 						top: { xs: 2*8, sm: 4*8, md: 6*8, lg: 8*8 }
@@ -981,7 +981,7 @@ const page: FC = async() => {
 								}}
 							>
 								<Image
-									src={track&&track?.attributes&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url?`http://localhost:1337${track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url}`:''}
+									src={track&&track?.attributes&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data&&track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url?`https://promecha.onrender.com${track?.attributes?.mainImgSrc&&track?.attributes?.mainImgSrc?.data?.attributes?.url}`:''}
 									alt={track?.attributes?.title}
 									width={500} height={500}
 									style={{

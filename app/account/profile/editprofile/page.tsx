@@ -43,7 +43,7 @@ console.log(parsetoken.jwt)
         push('/login');
         return;
       } else {
-        const response = await fetch("http://localhost:1337/api/users/me/?populate=profile&populate=resume", {
+        const response = await fetch("https://promecha.onrender.com/api/users/me/?populate=profile&populate=resume", {
           headers: {
             Authorization: `Bearer ${parsetoken.jwt}`,
           },
@@ -111,7 +111,7 @@ console.log(Profile)
 
     const tokenString = getAuthTokenCookie();
     const parsetoken = tokenString && JSON.parse(tokenString);
-    const response = await fetch(`http://localhost:1337/api/users/${parsetoken.user.id}`, {
+    const response = await fetch(`https://promecha.onrender.com/api/users/${parsetoken.user.id}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${parsetoken.jwt}`,
@@ -133,7 +133,7 @@ console.log(Profile)
         ProfileFormData.append('refId', parsetoken.user.id.toString());
         ProfileFormData.append('field', 'profile');
         ProfileFormData.append('files', Profile);
-        const uploadprofile = await axios.post('http://localhost:1337/api/upload', ProfileFormData, {
+        const uploadprofile = await axios.post('https://promecha.onrender.com/api/upload', ProfileFormData, {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             setUploadProgress(progress);
@@ -167,7 +167,7 @@ console.log(Profile)
         resumeFormData.append('field', 'resume');
         resumeFormData.append('files', resumeFile);
 
-        const uploadResponse = await axios.post('http://localhost:1337/api/upload', resumeFormData, {
+        const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', resumeFormData, {
           onUploadProgress: (progressEvent) => {
             const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             setUploadProgress(progress);
@@ -204,7 +204,7 @@ console.log(Profile)
         <Box my={2}>
      
             <Avatar
-            src={ Profile? URL.createObjectURL(Profile) : Profileimage?`http://localhost:1337${Profileimage}`:''}
+            src={ Profile? URL.createObjectURL(Profile) : Profileimage?`https://promecha.onrender.com${Profileimage}`:''}
             sx={{ width: 200, height: 200, mb: 2 }}
           />
           <Typography variant="subtitle1">Upload Photo</Typography>

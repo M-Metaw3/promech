@@ -71,7 +71,7 @@ const SignupForm = () => {
     const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-              const response = await axios.post('http://localhost:1337/api/auth/local/register', formData);
+              const response = await axios.post('https://promecha.onrender.com/api/auth/local/register', formData);
 
 
               console.log(response)
@@ -274,7 +274,7 @@ export default SignupForm;
 //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     try {
-//       const response = await axios.post('http://localhost:1337//api/auth/local/register', formData);
+//       const response = await axios.post('https://promecha.onrender.com//api/auth/local/register', formData);
 
 //       console.log(response);
 
@@ -481,7 +481,7 @@ export default SignupForm;
 //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     try {
-//       const response = await axios.post('http://localhost:1337//api/auth/local/register', formData);
+//       const response = await axios.post('https://promecha.onrender.com//api/auth/local/register', formData);
 //       console.log(response);
 //       if (response.status === 200) {
 //         setTimeout(() => {
@@ -544,7 +544,7 @@ export default SignupForm;
 // //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 // //     e.preventDefault();
 // //     try {
-// //       const response = await axios.post('http://localhost:1337//api/auth/local/register', formData);
+// //       const response = await axios.post('https://promecha.onrender.com//api/auth/local/register', formData);
 // //       console.log(response);
 // //       if (response.status === 200) {
 // //         setTimeout(() => {
