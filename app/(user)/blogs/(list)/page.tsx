@@ -50,7 +50,7 @@ import BlogCard from '@/components/BlogCard';
 
 
 
-    // const response = await fetch(`https://promecha.onrender.com//api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
+    // const response = await fetch(`http://promech-backend.addictaco.com///api/courses/${params.courseId}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage`,{
 
     // next:{
     //     revalidate: 60
@@ -59,7 +59,7 @@ import BlogCard from '@/components/BlogCard';
     // const data = await response.json()
     // const dataapi=  await data?.data?.attributes
 
-    const response = await fetch(`https://promecha.onrender.com/api/blogs/?populate=thubnail&populate=images`
+    const response = await fetch(`http://promech-backend.addictaco.com//api/blogs/?populate=thubnail&populate=images`
     ,{
 
     next:{

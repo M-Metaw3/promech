@@ -7,7 +7,7 @@ const nextConfig = {
         },
     },
       images: {
-    domains: ['promecha.onrender.com'],
+    domains: ['promech-backend.addictaco.com'],
     // domains: ['localhost'],
 
   },

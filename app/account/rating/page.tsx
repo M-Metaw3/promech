@@ -96,7 +96,7 @@ const handleSubmit = async () => {
       
 
       const taskanswerResponse = await axios.post(
-        'https://promecha.onrender.com/api/survey-answers',
+        'http://promech-backend.addictaco.com//api/survey-answers',
         JSON.stringify({ data: surveyData }), // Convert to JSON string
         {
           headers: {

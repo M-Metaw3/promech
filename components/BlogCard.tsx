@@ -23,7 +23,7 @@ console.log(blog.attributes)
             }}
         >
             <Image
-                src={blog&&blog?.attributes&&blog?.attributes?.thubnail&&blog?.attributes?.thubnail?.data&&blog?.attributes?.thubnail?.data?.attributes?.url?`https://promecha.onrender.com${blog?.attributes?.thubnail?.data?.attributes?.url}`:''} alt={blog?.attributes?.title}
+                src={blog&&blog?.attributes&&blog?.attributes?.thubnail&&blog?.attributes?.thubnail?.data&&blog?.attributes?.thubnail?.data?.attributes?.url?`http://promech-backend.addictaco.com/${blog?.attributes?.thubnail?.data?.attributes?.url}`:''} alt={blog?.attributes?.title}
                 width={700} height={400}
                 style={{
                     width: '100%', height: 377,

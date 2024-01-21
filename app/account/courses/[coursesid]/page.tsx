@@ -92,7 +92,7 @@
 //       const user =token.user.id
 //       try {
 //         // Step 1: Post data to the taskanswers API
-//         const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
+//         const taskanswerResponse = await axios.post('http://promech-backend.addictaco.com/api/taskanswers', {
 //           data: {
 //             task: id,
 //             users_permissions_user: user, // Make sure to define 'user' appropriately
@@ -110,7 +110,7 @@
 //             formDataUpload.append('field', 'answerfile');
 //             formDataUpload.append('files', selectedFile);
 
-//             const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
+//             const uploadResponse = await axios.post('http://promech-backend.addictaco.com/api/upload', formDataUpload, {
 //               onUploadProgress: (progressEvent) => {
 //                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
 //                 setUploadProgress(progress);
@@ -152,7 +152,7 @@
 //    React.useEffect(() => {
 //         const fetchData = async () => {
 //                 const response = await fetch(`
-//                 https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+//                 http://promech-backend.addictaco.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
 //             `);
 //                 const datares = await response.json()
 //     const coursee = await datares?.data;
@@ -205,7 +205,7 @@
 //             console.log(token.user.id);
 //             console.log(id);
 //             const response = await axios.post(
-//               "https://promecha.onrender.com/api/attendaces",
+//               "http://promech-backend.addictaco.com/api/attendaces",
 //               {
 //                 data: {
 //                   user: token.user.id,
@@ -254,7 +254,7 @@
               
 //                 const response = await fetch(`
       
-//                 https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
+//                 http://promech-backend.addictaco.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true
 //                 `);
 //                 const datares = await response.json()
 //                 setisattend(datares)
@@ -284,7 +284,7 @@
       
               
 //                 const response = await fetch(`
-//                 https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+//                 http://promech-backend.addictaco.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
           
 //                 `);
 //                 const datares = await response.json()
@@ -340,7 +340,7 @@
 //                     src={
 //                       course?.attributes?.userimage?.data &&
 //                       course?.attributes?.userimage.data?.attributes.url
-//                         ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
+//                         ? `http://promech-backend.addictaco.com${course.attributes?.userimage.data?.attributes.url}`
 //                         : ""
 //                     }
 //                     alt={course?.user?.name}
@@ -883,7 +883,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
       const user = token.user.id;
       try {
         // Step 1: Post data to the taskanswers API
-        const taskanswerResponse = await axios.post('https://promecha.onrender.com/api/taskanswers', {
+        const taskanswerResponse = await axios.post('http://promech-backend.addictaco.com/api/taskanswers', {
           data: {
             task: id,
             users_permissions_user: user,
@@ -895,7 +895,9 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
         console.log(taskanswerData?.data?.data?.id)
 
         if (taskanswerResponse.status === 200) {
-          // Step 2: If posting to taskanswers API is successful, upload the file to the upload API
+        alert("thank you for solving the task")
+window.location.reload();
+       
           if (selectedFile) {
             const formDataUpload = new FormData();
             formDataUpload.append('ref', 'api::taskanswer.taskanswer');
@@ -903,7 +905,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
             formDataUpload.append('field', 'answerfile');
             formDataUpload.append('files', selectedFile);
 
-            const uploadResponse = await axios.post('https://promecha.onrender.com/api/upload', formDataUpload, {
+            const uploadResponse = await axios.post('http://promech-backend.addictaco.com/api/upload', formDataUpload, {
               onUploadProgress: (progressEvent) => {
                 const progress = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
                 setUploadProgress(progress);
@@ -972,7 +974,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
         console.log(token.user.id);
         console.log(id);
         const response = await axios.post(
-          "https://promecha.onrender.com/api/attendaces",
+          "http://promech-backend.addictaco.com/api/attendaces",
           {
             data: {
               user: token.user.id,
@@ -982,12 +984,12 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
               primarykey
 
             },
-          }
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${token.jwt}`,
-          //   },
-          // }
+          },
+          {
+          headers: {
+                              Authorization: `Bearer ${token.jwt}`,
+                            }},
+       
         );
 if(response.status==200){
 alert("thank you for atteding the instructor will verify your attendance")
@@ -1038,7 +1040,7 @@ const doesLessonExist = (lessonId: string) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`
-        https://promecha.onrender.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
+        http://promech-backend.addictaco.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
       `);
       const datares = await response.json()
       const coursee = await datares?.data;
@@ -1061,7 +1063,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          https://promecha.onrender.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
+          http://promech-backend.addictaco.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&[populate][lesson]=true
         `);
         const datares = await response.json()
         setisattend(datares)
@@ -1084,7 +1086,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-          https://promecha.onrender.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
+          http://promech-backend.addictaco.com/api/tasks/?[populate][chapter][populate][courses]=true&filters[chapter][courses]=${params.coursesid}&[populate][file]=true
         `);
         const datares = await response.json()
         settasks(datares.data)
@@ -1116,7 +1118,7 @@ console.log(course?.attributes?.chapters?.data)
         return;
       } else {
         const response = await fetch(`
-        https://promecha.onrender.com/api/taskanswers/?populate[users_permissions_user][populate]=true&filters[users_permissions_user]=${parsetoken?.user?.id}&populate[task][populate]=true
+        http://promech-backend.addictaco.com/api/taskanswers/?populate[users_permissions_user][populate]=true&filters[users_permissions_user]=${parsetoken?.user?.id}&populate[task][populate]=true
         `);
         const datares = await response.json()
        settaskanswer(datares)
@@ -1154,7 +1156,7 @@ console.log(course?.attributes?.chapters?.data)
                   src={
                     course?.attributes?.userimage?.data &&
                     course?.attributes?.userimage.data?.attributes.url
-                      ? `https://promecha.onrender.com${course.attributes?.userimage.data?.attributes.url}`
+                      ? `http://promech-backend.addictaco.com${course.attributes?.userimage.data?.attributes.url}`
                       : ""
                   }
                   alt={course?.user?.name}
@@ -1208,7 +1210,7 @@ console.log(course?.attributes?.chapters?.data)
 
 <FormControlLabel
 control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-label="Required"
+label="Attend"
 />
                          )} 
   
@@ -1235,7 +1237,7 @@ label="Required"
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             
-                            <Button  component={Link} href={`https://promecha.onrender.com${task?.attributes?.file?.data?.attributes?.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
+                            <Button  component={Link} href={`http://promech-backend.addictaco.com${task?.attributes?.file?.data?.attributes?.url}`} color="secondary"  startIcon={<CloudDownloadIcon />}>
                               
       Download pdf quize
       <VisuallyHiddenInput type="file" />

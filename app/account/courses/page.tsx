@@ -25,7 +25,7 @@
 //         if (!tokenString) {
 //           throw new Error("You must log in to access this service");
 //         } else {
-//           const response = await fetch(`https://promecha.onrender.com/api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}`);
+//           const response = await fetch(`http://promech-backend.addictaco.com//api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}`);
 //           const datares = await response.json();
 //           setdata(datares);
 //         }
@@ -200,7 +200,7 @@ const AccountOverview = (): JSX.Element => {
         if (!tokenString) {
           throw new Error("You must log in to access this service");
         } else {
-          const response = await fetch(`https://promecha.onrender.com/api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}&populate[course][populate][userimage]=true`);
+          const response = await fetch(`http://promech-backend.addictaco.com//api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}&populate[course][populate][userimage]=true`);
           const datares = await response.json();
           setdata(datares);
         }

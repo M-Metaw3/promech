@@ -34,7 +34,7 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
         >
             <Box position='relative' width='100%' height={266}>
                 <Image
-                    src={course.imgSrc && course.imgSrc.data.attributes.url ? `https://promecha.onrender.com${course?.imgSrc && course.imgSrc.data.attributes.url}` : ''}
+                    src={course.imgSrc && course.imgSrc.data.attributes.url ? `http://promech-backend.addictaco.com/${course?.imgSrc && course.imgSrc.data.attributes.url}` : ''}
                     alt={course.title}
                     width={270} height={200}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', transition: '0.2s' }}
@@ -63,7 +63,7 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
                 {/* <Typography component='span' fontSize='12px' fontWeight={500}>{(course.chapters.data.length / course.chapters.data.length * 100).toFixed(2)} %</Typography> */}
             </Stack>
             <Stack direction='row' width='100%' gap={1} alignItems='center'>
-                <Avatar src={course.userimage && course.userimage.data.attributes.url ? `https://promecha.onrender.com${course?.userimage && course.userimage.data.attributes.url}` : ''} alt={'Salma Hegazy'} sx={{ width: 30, height: 30 }} />
+                <Avatar src={course.userimage && course.userimage.data.attributes.url ? `http://promech-backend.addictaco.com/${course?.userimage && course.userimage.data.attributes.url}` : ''} alt={'Salma Hegazy'} sx={{ width: 30, height: 30 }} />
                 <Typography component='span' fontSize='14px'>{course.user}</Typography>
             </Stack>
             <Stack gap={2}>
