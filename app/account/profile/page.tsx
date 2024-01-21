@@ -51,7 +51,7 @@
 //         push('/login');
 //         return;
 //       } else {
-//         const response = await fetch("http://promech-backend.addictaco.com//api/users/me", {
+//         const response = await fetch("http://promech-backend.addictaco.comapi/users/me", {
 //           headers: {
 //             Authorization: `Bearer ${parsetoken.jwt}`,
 //           },
@@ -289,7 +289,7 @@
 // //         push('/login');
 // //         return;
 // //       } else {
-// //         const response = await fetch("http://promech-backend.addictaco.com//api/users/me", {
+// //         const response = await fetch("http://promech-backend.addictaco.comapi/users/me", {
 // //           headers: {
 // //             Authorization: `Bearer ${parsetoken.jwt}`,
 // //           },

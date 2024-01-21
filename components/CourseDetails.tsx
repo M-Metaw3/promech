@@ -77,7 +77,7 @@ console.log(course)
         return;
       } else {
         const response = await fetch(
-          `http://promech-backend.addictaco.com//api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true`
+          `http://promech-backend.addictaco.com/api/attendaces/?populate[user][populate]=true&filters[user]=${parsetoken?.user?.id}&filters[attended]=true&[populate][lesson]=true`
         );
         const datares = await response.json();
         const isAttendArray = Array.isArray(datares) ? datares : [datares];
@@ -103,7 +103,7 @@ setisattend(isAttendArray)
         return;
       } else {
         const response = await fetch(
-          `http://promech-backend.addictaco.com//api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
+          `http://promech-backend.addictaco.com/api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
         );
         const datares = await response.json();
         console.log(datares?.data)
@@ -158,7 +158,7 @@ setisattend(isAttendArray)
         console.log(id);
 
         const response = await axios.post(
-          'http://promech-backend.addictaco.com//api/bookings',
+          'http://promech-backend.addictaco.com/api/bookings',
           {
             data: { user, course, primarykey },
           }
@@ -237,7 +237,7 @@ setisattend(isAttendArray)
                 src={
                   course?.userimage?.data &&
                   course.userimage.data?.attributes.url
-                    ? `http://promech-backend.addictaco.com/${course.userimage.data?.attributes.url}`
+                    ? `http://promech-backend.addictaco.com${course.userimage.data?.attributes.url}`
                     : ''
                 }
                 alt={course.user.name}

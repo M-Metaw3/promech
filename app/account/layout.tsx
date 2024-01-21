@@ -100,7 +100,7 @@ React.useEffect(() => {
 		const parsetoken = JSON.parse(tokenString);
 		console.log(parsetoken.jwt);
   
-		const response = await fetch("http://promech-backend.addictaco.com//api/users/me/?populate=profile&populate=resume", {
+		const response = await fetch("http://promech-backend.addictaco.com/api/users/me/?populate=profile&populate=resume", {
 		  headers: {
 			Authorization: `Bearer ${parsetoken.jwt}`,
 		  },

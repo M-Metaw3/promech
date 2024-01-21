@@ -77,7 +77,7 @@
 
 
 
-//                 http://promech-backend.addictaco.com//api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}
+//                 http://promech-backend.addictaco.comapi/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}
 //                 `);
 //                 const datares = await response.json()
 //                 setdata(datares)
@@ -238,7 +238,7 @@ const AccountOverview = (): JSX.Element => {
 
 
 
-                http://promech-backend.addictaco.com//api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&populate[course][populate][userimage]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}
+                http://promech-backend.addictaco.com/api/bookings?populate[course][populate][imgSrc]=true&populate[course][populate][chapters][populate][lessons]=true&populate[user][populate]=true&populate[course][populate][userimage]=true&filters[isBooking]=true&filters[user]=${parsetoken?.user?.id}
                 `);
                 const datares = await response.json()
                 setdata(datares)

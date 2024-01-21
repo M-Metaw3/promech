@@ -19,7 +19,7 @@ const YourPage = (): JSX.Element => {
         return;
       } else {
         const response = await fetch(
-          `http://promech-backend.addictaco.com//api/certificates/?populate[user][populate]=true&filters[users_permissions_user]=${parseToken.user.id}&populate[image][populate]=true&populate[pdf][populate]=true`
+          `http://promech-backend.addictaco.com/api/certificates/?populate[user][populate]=true&filters[users_permissions_user]=${parseToken.user.id}&populate[image][populate]=true&populate[pdf][populate]=true`
         );
         const datares = await response.json();
         console.log(datares.data);

@@ -187,7 +187,7 @@ const CourseCard = ({ course }:any) => {
     course.attributes.userimage &&
     course.attributes.userimage.data &&
     course.attributes.userimage.data.attributes.url
-      ? `http://promech-backend.addictaco.com/${course.attributes.userimage.data.attributes.url}`
+      ? `http://promech-backend.addictaco.com${course.attributes.userimage.data.attributes.url}`
       : ''
   }
   alt={course?.attributes?.user}

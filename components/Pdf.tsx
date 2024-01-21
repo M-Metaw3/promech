@@ -159,7 +159,7 @@ export default function RecipeReviewCard({ certificate }: RecipeReviewCardProps)
       <CardMedia
         component="img"
         height="300"
-        image={certificate?.attributes?.image?.data?.attributes?.url ? `http://promech-backend.addictaco.com/${certificate?.attributes?.image?.data?.attributes?.url}` : ''}
+        image={certificate?.attributes?.image?.data?.attributes?.url ? `http://promech-backend.addictaco.com${certificate?.attributes?.image?.data?.attributes?.url}` : ''}
         alt="Paella dish"
       />
       <CardContent>
@@ -172,7 +172,7 @@ export default function RecipeReviewCard({ certificate }: RecipeReviewCardProps)
       <CardActions disableSpacing>
         <IconButton
           component={Link}
-          href={certificate?.attributes?.pdf?.data?.attributes?.url ? `http://promech-backend.addictaco.com/${certificate?.attributes?.pdf?.data?.attributes?.url}` : ''}
+          href={certificate?.attributes?.pdf?.data?.attributes?.url ? `http://promech-backend.addictaco.com${certificate?.attributes?.pdf?.data?.attributes?.url}` : ''}
           aria-label="share"
         >
           <CloudDownloadIcon />

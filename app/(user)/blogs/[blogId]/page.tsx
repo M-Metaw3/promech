@@ -47,7 +47,7 @@
 //             min: 9
 //         }
 //     ]
-//     const response = await fetch(`http://promech-backend.addictaco.com//api/blogs/${params?.blogId}?populate=images`
+//     const response = await fetch(`http://promech-backend.addictaco.comapi/blogs/${params?.blogId}?populate=images`
 //     ,{
 //     next:{
 //         revalidate: 60
@@ -58,7 +58,7 @@
 
 
 
-//     const responseall = await fetch(`http://promech-backend.addictaco.com//api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`
+//     const responseall = await fetch(`http://promech-backend.addictaco.comapi/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`
 //     ,{
 
 //     next:{
@@ -172,7 +172,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
       min: 9,
     },
   ];
-  const response = await fetch(`http://promech-backend.addictaco.com//api/blogs/${params?.blogId}?populate=images`, {
+  const response = await fetch(`http://promech-backend.addictaco.com/api/blogs/${params?.blogId}?populate=images`, {
     next: {
       revalidate: 60,
     },
@@ -181,7 +181,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
   const dataapi = await data?.data;
 
   const responseall = await fetch(
-    `http://promech-backend.addictaco.com//api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`,
+    `http://promech-backend.addictaco.com/api/blogs/?pagination[limit]=3&sort[0]=createdAt&populate=thubnail&populate=images`,
     {
       next: {
         revalidate: 0,
@@ -204,7 +204,7 @@ const BlogDetails: FC<BlogDetailsProps> = async ({ params }) => {
               dataapi &&
               dataapi?.attributes?.images?.data[0] &&
               dataapi?.attributes?.images?.data[0]?.attributes?.url
-                ? `http://promech-backend.addictaco.com/${dataapi?.attributes?.images?.data[0]?.attributes?.url}`
+                ? `http://promech-backend.addictaco.com${dataapi?.attributes?.images?.data[0]?.attributes?.url}`
                 : ''
             }
             alt={blog.title}
