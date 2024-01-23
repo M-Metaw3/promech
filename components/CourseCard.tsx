@@ -163,7 +163,7 @@ const CourseCard = ({ course }:any) => {
 
             <Box position='relative' width='100%' height={266}>
                 <Image
-                    src={course?.attributes?.imgSrc?.data?.attributes.url?`http://promech-backend.addictaco.com/${course?.attributes?.imgSrc?.data?.attributes.url}`:''} alt={course?.attributes?.title}
+                    src={course?.attributes?.imgSrc?.data?.attributes.url?`http://promech-backend.addictaco.com${course?.attributes?.imgSrc?.data?.attributes.url}`:''} alt={course?.attributes?.title}
                     width={270} height={200}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', transition: '0.2s' }}
                 />

@@ -225,7 +225,7 @@ React.useEffect(() => {
 					<Typography variant="h4" fontWeight={500} noWrap>
 						Hi,{username}
 					</Typography>
-					<Avatar src={image?`http://promech-backend.addictaco.com/${image}`:''} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
+					<Avatar src={image?`http://promech-backend.addictaco.com${image}`:''} alt={'Salma Hegazy'} sx={{ width: 50, height: 50 }} />
 				</Toolbar>
 			</AppBar>
 			<br />

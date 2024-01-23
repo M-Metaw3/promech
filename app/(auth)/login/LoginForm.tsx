@@ -107,7 +107,7 @@ const LoginPage = () => {
                 />
             </FormControl>
             <Stack direction='row' justifyContent='space-between' alignItems='center' width='100%' flexWrap='wrap'>
-                <MuiLink color='secondary.main' underline='hover' component={Link} href='/forget'>Forgot password?</MuiLink>
+                {/* <MuiLink color='secondary.main' underline='hover' component={Link} href='/forget'>Forgot password?</MuiLink> */}
                 <Button variant='contained'
                     type='submit'
                     sx={{ fontWeight: 400, paddingX: 7, paddingY: 1.5 }}

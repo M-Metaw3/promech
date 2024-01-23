@@ -810,7 +810,13 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 const Tracks = ({ params }: { params: { coursesid: string } }) => {
+
+
   console.log(params.coursesid)
+
+
+
+
   const [course, setcourse] = useState<any>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -826,7 +832,13 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
   const [taskanswer, settaskanswer] = useState<any>([]);
 
   const [isChecked, setIsChecked] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      localStorage.setItem("courseid",params.coursesid)
 
+    }
+    fetchData();
+  }, []);
   const handleCheckboxChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
   };
@@ -964,15 +976,16 @@ window.location.reload();
         push("/login");
         return;
       }
-
+   
+      console.log(`Bearer ${token.jwt}`)
       const primarykey = `${i}${o}${id}`
-
       if (token && token.jwt && token.user && token.user.id) {
         const course = id;
         const user = token.user.id;
 
-        console.log(token.user.id);
-        console.log(id);
+
+        console.log(course)
+        console.log(user)
         const response = await axios.post(
           "http://promech-backend.addictaco.com/api/attendaces",
           {
@@ -985,10 +998,7 @@ window.location.reload();
 
             },
           },
-          {
-          headers: {
-                              Authorization: `Bearer ${token.jwt}`,
-                            }},
+     
        
         );
 if(response.status==200){
@@ -1147,7 +1157,7 @@ console.log(course?.attributes?.chapters?.data)
           <Grid item xs={3} md={2} display='flex' flexDirection='column' gap='30px'>
             <Box component='iframe' border='none'
               borderRadius='10px 10px 0px 0px'
-              width="100%" height={500} src={`https://www.youtube.com/embed/O8mdH2M7MKU`}
+              width="100%" height={500} src={course?.attributes?.courseyoutubelink}
             />
             <Stack gap='20px'>
               <Typography variant='h4' fontWeight={700}>{course?.title}</Typography>
@@ -1178,11 +1188,11 @@ console.log(course?.attributes?.chapters?.data)
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <TabList onChange={handleChange} aria-label="lab API tabs example">
-                    <Tab label="Item One" value="1" />
-                    <Tab label="attendance" value="2" />
-                    <Tab label="tasks" value="3" />
+                    <Tab label="Description" value="1" />
+                    <Tab label="Attendance" value="2" />
+                    <Tab label="Tasks" value="3" />
                     <Tab label="Progress" value="4" />
-                    <Tab label="Rate" value="5" />
+                    {/* <Tab label="Rate" value="5" /> */}
                   </TabList>
                 </Box>
                 
@@ -1210,7 +1220,7 @@ console.log(course?.attributes?.chapters?.data)
 
 <FormControlLabel
 control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-label="Attend"
+label="Done"
 />
                          )} 
   
@@ -1367,7 +1377,7 @@ label="Attend"
 
 
                 </TabPanel>
-                <TabPanel value="5">Course </TabPanel>
+                <TabPanel value="5"> Course </TabPanel>
               </TabContext>
             </Box>
           </Grid>

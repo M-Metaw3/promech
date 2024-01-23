@@ -54,13 +54,17 @@ export default function Questionnaire() {
       )
     );
   };
-const { push } = useRouter();
-
+  const { push } = useRouter();
+  
+  // const courseid =localStorage?.getItem("courseid")||null
+  const courseid =
+  typeof window !== 'undefined' ? localStorage?.getItem('courseid') || null : null;
+  
 const handleSubmit = async () => {
   const tokenString = getAuthTokenCookie();
 
   try {
-    if (!tokenString) {
+    if (!tokenString&&courseid) {
       push("/login");
       return;
     }
@@ -75,7 +79,7 @@ const handleSubmit = async () => {
     }
 
     const user = token.user.id;
-
+console.log(courseid)
     try {
   
       const surveyData = {
@@ -90,8 +94,8 @@ const handleSubmit = async () => {
         rating3: String(questions[2].rating),
         rating4: String(questions[3].rating),
         rating5: String(questions[4].rating),
-        course: "6",
-        unique: `${user}5`,
+        course: courseid,
+        unique: `${user}${courseid}`,
       };
       
 

@@ -548,6 +548,8 @@ import EastIcon from '@mui/icons-material/East';
 import Link from 'next/link';
 
 import { colors, fonts } from '@/components/ThemeRegistry/variables';
+import SliderLogo  from '@/components/SliderLogo';
+
 import DownButton from './DownButton';
 import Students from './Students';
 import CourseCard from '@/components/CourseCard';
@@ -723,6 +725,9 @@ const page: FC = async() => {
 	return (
 		<>
 			<Box position='relative' bgcolor='primary.main' color='#FFF' marginTop='106px' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
+
+		
+
 				<Container disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
 					<Grid container columnSpacing={2} rowGap={2} alignItems='center' justifyContent='space-between' zIndex={1}>
 						<Grid style={{ 
@@ -882,6 +887,8 @@ const page: FC = async() => {
 						</Grid>
 					</Stack>
 					<Box component='img' alt='ellipse' src='/home/ellipse3.svg' sx={{ alignSelf: 'flex-start', position: { xs: 'absolute', md: 'block', top: 0, right: 0 } }} />
+				
+
 
 					<Box component='img' alt='group2' src='/home/group2.svg'
 						sx={{
@@ -889,10 +896,12 @@ const page: FC = async() => {
 							bottom: { xs: -8*8, md: -10*8, lg: -12*8 }
 						}}
 					/>
+			
 
-					
+
+
 				</Container>
-				
+
 
 				{/* <Box component='img' alt='group1' src={el?.attributes?.imagesection?.data?.attributes?.url?`http://promech-backend.addictaco.com${el?.attributes?.imagesection?.data?.attributes?.url}`:''}
 					sx={{
@@ -1058,6 +1067,8 @@ const page: FC = async() => {
 
 			<Box position='relative' bgcolor='#FAFAFA' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
 				<Container disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				
+				
 					<Typography color='#000' fontWeight={500} fontSize='22px'>Courses</Typography>
 					<Typography variant='h2' fontSize={{ xs: '30px', md: '38px'}} color='primary.main' fontWeight={700} display='flex'>
 						Most Popular Courses
@@ -1081,16 +1092,16 @@ const page: FC = async() => {
 								
 								))}
 								</Grid>
-					<Button variant='contained' size='large'
+					{/* <Button variant='contained' size='large'
 						endIcon={<EastIcon />}
 						sx={{ fontWeight: 600, fontSize: '16px',  marginLeft: 3, marginTop: 4 }}
 					>
 						View Courses
-					</Button>
+					</Button> */}
 				</Container>
 			</Box>
 
-			{/* <Box position='relative' bgcolor='#FFF' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
+			<Box position='relative' bgcolor='#FFF' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
 				<Container disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
 					<Typography variant='h6' fontSize='22px' fontWeight={500} color='primary.main' lineHeight='normal'>TESTIMONIALS</Typography>
 					<Typography variant='h3' fontWeight={600} color='text.secondary' fontSize={{ xs: '30px', md: '38px'}} lineHeight='normal'>
@@ -1111,26 +1122,30 @@ const page: FC = async() => {
 						transform: 'rotate(116deg)'
 					}}
 				/>
-			</Box> */}
+			</Box>
 
-			{/* <Box position='relative' bgcolor='#FAFAFA' paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
-				<Container disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-					<Typography variant='h4' color='text.secondary' fontWeight={600}>We loved Sponsor</Typography>
-					<img alt='giz' src='/home/giz-red.png' style={{ mixBlendMode: 'darken' }} />
-
+			<Box width="100%" position='relative'  paddingY={{ xs: 2, sm: 4, md: 6, lg: 8 }} paddingX={{ xs: 1, lg: 0 }}>
+				<Container  disableGutters maxWidth='lg' sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+					<Typography variant='h4' color='text.secondary' fontWeight={600} ml="20px">We loved Sponsor</Typography>
+					<Box width='100%' bgcolor='#FAFAFA' 
+        mt={"25px"}
+		ml="20px"  mr={"50px"} mb={"20px"}>
+					<SliderLogo/>
+					</Box>
 					<Box component='img' alt='group4' src='/home/group4.svg'
 						sx={{
-							position: 'absolute', top: 10, left: 50,
+							position: 'relative', top: -168, left: -630,
 						}}
 					/>
 					<Box component='img' alt='group4' src='/home/group4.svg'
 						sx={{
-							position: 'absolute', bottom: 10, right: 50,
+							position: 'relative', bottom:80, right: -600,
 							transform: 'rotate(180deg)'
 						}}
 					/>
 				</Container>
-			</Box> */}
+			</Box>
+
 		</>
 	)
 }

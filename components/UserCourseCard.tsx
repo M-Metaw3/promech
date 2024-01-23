@@ -34,8 +34,8 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
         >
             <Box position='relative' width='100%' height={266}>
                 <Image
-                    src={course.imgSrc && course.imgSrc.data.attributes.url ? `http://promech-backend.addictaco.com${course?.imgSrc && course.imgSrc.data.attributes.url}` : ''}
-                    alt={course.title}
+                    src={course?.imgSrc && course?.imgSrc?.data?.attributes?.url ? `http://promech-backend.addictaco.com${course?.imgSrc && course.imgSrc.data.attributes.url}` : ''}
+                    alt={course?.title}
                     width={270} height={200}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px', transition: '0.2s' }}
                 />
@@ -46,10 +46,10 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
                     sx={{ backdropFilter: 'blur(15px)' }}
                 >
                     {/* <Divider orientation='vertical' sx={{ bgcolor: course.category.iconColor, width: 3, height: 12, border: 'none' }} /> */}
-                    <Typography fontSize='12px'>{course.categoryname}</Typography>
+                    <Typography fontSize='12px'>{course?.categoryname}</Typography>
                 </Stack>
             </Box>
-            <Typography variant='h6' fontSize='18px' fontWeight={700} color='primary.main' flexGrow={1}>{course.title}</Typography>
+            <Typography variant='h6' fontSize='18px' fontWeight={700} color='primary.main' flexGrow={1}>{course?.title}</Typography>
             {/* <LinearProgress
                 variant='determinate' color='secondary'
                 sx={{
@@ -59,12 +59,12 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
                 value={course.finishedChaptersCount / course.chaptersCount * 100}
             /> */}
             <Stack direction='row' width='100%' justifyContent='space-between' gap={1} marginTop={-1}>
-                <Typography component='span' fontSize='12px' fontWeight={500}>{course.chapters.data.length}/{course.chapters.data.length} Chapters</Typography>
+                <Typography component='span' fontSize='12px' fontWeight={500}>{course?.chapters?.data?.length}/{course?.chapters?.data?.length} Chapters</Typography>
                 {/* <Typography component='span' fontSize='12px' fontWeight={500}>{(course.chapters.data.length / course.chapters.data.length * 100).toFixed(2)} %</Typography> */}
             </Stack>
             <Stack direction='row' width='100%' gap={1} alignItems='center'>
-                <Avatar src={course.userimage && course.userimage.data.attributes.url ? `http://promech-backend.addictaco.com${course?.userimage && course.userimage.data.attributes.url}` : ''} alt={'Salma Hegazy'} sx={{ width: 30, height: 30 }} />
-                <Typography component='span' fontSize='14px'>{course.user}</Typography>
+                <Avatar src={course?.userimage && course?.userimage?.data?.attributes?.url ? `http://promech-backend.addictaco.com${course?.userimage && course?.userimage?.data?.attributes?.url}` : ''} alt={'Salma Hegazy'} sx={{ width: 30, height: 30 }} />
+                <Typography component='span' fontSize='14px'>{course?.user}</Typography>
             </Stack>
             <Stack gap={2}>
                 {/* <Stack direction='row' gap='10px' alignItems='center'>
@@ -75,19 +75,19 @@ const UserCourseCard: FC<CourseProps> = ({ id, course }) => {
                     <Stack direction='row' gap={0.5}>
                         <ArticleOutlinedIcon fontSize='small' sx={{ fill: '#9C9CA4' }} />
                         <Typography fontSize='14px'>
-                            <Typography variant='inherit' component='span' fontWeight={700}>{course.chaptersCount}</Typography> Chapter(s)
+                            <Typography variant='inherit' component='span' fontWeight={700}>{course?.chaptersCount}</Typography> Chapter(s)
                         </Typography>
                     </Stack>
-                    {course.daysCount && <Stack direction='row' gap={0.5}>
+                    {course?.daysCount && <Stack direction='row' gap={0.5}>
                         <ArticleOutlinedIcon fontSize='small' sx={{ fill: '#9C9CA4' }} />
                         <Typography fontSize='14px'>
-                            <Typography variant='inherit' component='span' fontWeight={700}>{course.daysCount}</Typography> Chapters
+                            <Typography variant='inherit' component='span' fontWeight={700}>{course?.daysCount}</Typography> Chapters
                         </Typography>
                     </Stack>}
-                    {course.hours && <Stack direction='row' gap={0.5}>
+                    {course?.hours && <Stack direction='row' gap={0.5}>
                         <TimerOutlinedIcon fontSize='small' sx={{ fill: '#9C9CA4' }} />
                         <Typography fontSize='14px'>
-                            <Typography variant='inherit' component='span' fontWeight={700}>{course.hours}</Typography> Hour(s)
+                            <Typography variant='inherit' component='span' fontWeight={700}>{course?.hours}</Typography> Hour(s)
                         </Typography>
                     </Stack>}
                 </Stack>

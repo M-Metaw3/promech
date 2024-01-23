@@ -2,7 +2,7 @@
 
 import { getAuthTokenCookie } from '@/utils/auth';
 import React, { useEffect, ChangeEvent, useState } from 'react';
-import { Container, Box, Typography, TextField, Button, Avatar, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Container, Box, Typography, TextField, Button, Avatar, Select, MenuItem, FormControl,FormLabel, InputLabel } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
@@ -12,7 +12,10 @@ interface ProfileData {
   phoneNumber: string;
   linkedInLink: string;
   websiteLink: string;
-  bio: string;
+  GraduationDates: string;
+  gender: string;
+  fullusername: string;
+  bio: string
 }
 
 function EditProfile() {
@@ -23,6 +26,9 @@ function EditProfile() {
     linkedInLink: '',
     websiteLink: '',
     bio: '',
+    GraduationDates:'',
+    gender:'',
+    fullusername:'',
   });
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [Profile, setProfile] = useState<File | null>(null);
@@ -53,6 +59,9 @@ console.log(parsetoken.jwt)
         setresumdata(datares?.resume?.name)
         console.log(datares)
         setProfileData({
+          fullusername:datares?.fullusername,
+          gender:datares?.gender,
+          GraduationDates:datares?.GraduationDates,
           fullName: datares.username,
           jobStatus: datares.jobStatus||false,
           phoneNumber: datares.phonenumber,
@@ -84,7 +93,7 @@ console.log(parsetoken.jwt)
   const handleResumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     // setResumeFile(file);
-    setProfile(file || null);
+    setResumeFile(file || null);
   };
   const handleProfilChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -101,8 +110,8 @@ console.log(Profile)
     formData.append('username', profileData.fullName);
     formData.append('jobstatus', profileData.jobStatus?.toString());
     formData.append('phonenumber', profileData.phoneNumber);
-    formData.append('linkedInLink', profileData.linkedInLink);
-    formData.append('websiteLink', profileData.websiteLink);
+    formData.append('linkedin', profileData.linkedInLink);
+    formData.append('website', profileData.websiteLink);
     formData.append('bio', profileData.bio);
     if (resumeFile !== null) {
       formData.append('resume', resumeFile);
@@ -113,9 +122,9 @@ console.log(Profile)
     const parsetoken = tokenString && JSON.parse(tokenString);
     const response = await fetch(`http://promech-backend.addictaco.com/api/users/${parsetoken.user.id}`, {
       method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${parsetoken.jwt}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${parsetoken.jwt}`,
+      // },
       body: formData,
     });
     
@@ -147,8 +156,9 @@ console.log(Profile)
        
           return;
         }else{
-
+          
           alert("your data updated")
+          window.location.reload();
         }
 
 
@@ -215,10 +225,19 @@ console.log(Profile)
 
 
 
-
         <TextField
           fullWidth
           label="Full Name"
+          variant="outlined"
+          name="fullusername"
+          value={profileData.fullusername}
+          onChange={handleInputChange}
+          margin="normal"
+        />
+
+        <TextField
+          fullWidth
+          label="User Name"
           variant="outlined"
           name="fullName"
           value={profileData.fullName}
@@ -228,6 +247,7 @@ console.log(Profile)
         <FormControl fullWidth variant="outlined" margin="normal">
           <InputLabel id="job-status-label">Job Status</InputLabel>
           <Select
+
             labelId="job-status-label"
             id="job-status-select"
             name="jobStatus"
@@ -235,10 +255,46 @@ console.log(Profile)
             onChange={handleJobStatusChange}
             label="Job Status"
           >
-            <MenuItem value="true">True</MenuItem>
-            <MenuItem value="false">False</MenuItem>
+            <MenuItem   value="true">Employeed</MenuItem>
+            <br/>
+            <br/>
+
+          
+            <MenuItem value="false">Not Employeed </MenuItem>
           </Select>
         </FormControl>
+        <FormControl fullWidth variant="outlined" margin="normal">
+            
+
+            <InputLabel  id="job-status-label">Gender</InputLabel>
+            <Select
+        required
+              labelId="job-status-label"
+              id="job-status-select"
+              name="gender"
+              value={profileData?.gender?.toString()}
+              onChange={handleJobStatusChange}
+              label="Job Status"
+            >
+              <MenuItem   value="Male">Male</MenuItem>
+              <br/>
+              <br/>
+  
+            
+              <MenuItem value="Female">Female </MenuItem>
+            </Select>
+        </FormControl>
+
+            <FormControl variant="standard" fullWidth>
+                <FormLabel htmlFor="GraduationDates">Graduation Date</FormLabel>
+                <TextField
+                    name='GraduationDates' placeholder='Graduation Dates' fullWidth type='date'
+                    value={profileData?.GraduationDates}
+                    onChange={handleJobStatusChange}
+                    required 
+                    // value={formData.email} onChange={handleChange} required
+                />
+            </FormControl>
         <TextField
           fullWidth
           label="Phone Number"
@@ -279,7 +335,7 @@ console.log(Profile)
           rows={4}
         />
          <Box my={2}>
-          <Typography variant="subtitle1">Upload as</Typography>
+          <Typography variant="subtitle1">Upload Cv</Typography>
           <input type="file" accept=".pdf,.doc,.docx" onChange={handleResumeChange} />
         </Box>
 {resumdata?(    <Typography variant="h6" gutterBottom>

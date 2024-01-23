@@ -276,8 +276,8 @@ const AccountOverview = (): JSX.Element => {
                     <Typography variant="h5" fontWeight={500} noWrap>My Courses</Typography>
                     <Grid container columns={3} columnSpacing={8} rowGap={4} marginTop={2} justifyContent='stretch'>
                         {dataapiuser&&dataapiuser.data&&dataapiuser.data.map((course: any) =>
-                            <Grid item xs={3} md={1} key={course.attributes.course.data.attributes.title}>
-                                <UserCourseCard id={course.attributes?.course?.data.id} course={course.attributes?.course?.data.attributes} />
+                            <Grid item xs={3} md={1} key={course?.attributes?.course?.data?.attributes?.title}>
+                                <UserCourseCard id={course.attributes?.course?.data?.id} course={course.attributes?.course?.data?.attributes} />
                             </Grid>
                         )}
                     </Grid>

@@ -211,7 +211,7 @@ setisattend(isAttendArray)
     // Return true if the lesson exists in both JSONs
     return lessonInJson1 && lessonInJson2;
   }
-  
+  const courseyoutubelink = course?.courseyoutubelink;
   
   
   console.log(doesLessonExist(5));
@@ -226,7 +226,9 @@ setisattend(isAttendArray)
             borderRadius="10px 10px 0px 0px"
             width="100%"
             height={500}
-            src={`https://www.youtube.com/embed/O8mdH2M7MKU`}
+            // src={`https://www.youtube.com/embed/O8mdH2M7MKU`}
+            src={course?.courseyoutubelink}
+
           />
           <Stack gap="20px">
             <Typography variant="h4" fontWeight={700}>
@@ -240,7 +242,7 @@ setisattend(isAttendArray)
                     ? `http://promech-backend.addictaco.com${course.userimage.data?.attributes.url}`
                     : ''
                 }
-                alt={course.user.name}
+                alt={course?.user?.name}
                 sx={{ width: 30, height: 30 }}
               />
               <Typography variant="body2">{course?.user}</Typography>

@@ -492,7 +492,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CourseCard from '@/components/CourseCard';
 
 const CADTracks = async (props: any): Promise<JSX.Element> => {
-    const response = await fetch(`http://promech-backend.addictaco.comapi/tracks/${props.params.cad}/?populate=mainImgSrc&populate=sectionImg&populate=courses&populate=courses.imgSrc&populate=courses.userimage&populate=courses.chapters`,
+    const response = await fetch(`http://promech-backend.addictaco.com/api/tracks/${props.params.cad}/?populate=mainImgSrc&populate=sectionImg&populate=courses&populate=courses.imgSrc&populate=courses.userimage&populate=courses.chapters`,
     {
         next:{revalidate:0}
     });
