@@ -8,6 +8,9 @@ import 'swiper/css/navigation';
 import './globals.css';
 
 
+
+
+
 export const metadata: Metadata = {
 	title: 'PROMECH',
 	description: 'PROMECH is your learning gate to leap from ordinary to EXTRA-ordinary',

@@ -255,6 +255,8 @@ interface FormData {
 const ContactForm: React.FC = () => {
   const country = getCookie('country') as MuiTelInputCountry;
   const [isClient, setIsClient] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     surName: '',
@@ -277,19 +279,24 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setIsLoading(true)
       const careersResponse = await axios.post('http://promech-backend.addictaco.com/api/contacts', {
         data: formData,
       });
       const careersData = careersResponse;
       console.log('Careers API response:', careersData);
-      careersData.status === 200 ? toast.success('Data submitted successfully!') : toast.error('Error submitting data');
+   if(   careersData.status === 200) { toast.success('Data submitted successfully!')
+    location.reload()
+    } else{ toast.error('Error submitting data')};
     } catch (error) {
       console.log('Careers API response:', error);
       toast.error('Error submitting data');
+    }finally{
+      setIsLoading(false)
     }
   };
 
-  console.log('formData', formData);
+
 
   if (!isClient) return <Loader />;
 
@@ -332,7 +339,7 @@ const ContactForm: React.FC = () => {
         fullWidth multiline minRows={6}
         value={formData.message} onChange={handleChange} required
       />
-      <Button variant='contained' size='large' type='submit'
+      <Button disabled={isLoading} variant='contained' size='large' type='submit'
         sx={{
           fontSize: '19px', paddingY: 1, paddingX: 6,
           fontWeight: 600, alignSelf: 'flex-start'

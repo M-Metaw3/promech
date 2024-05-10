@@ -8,7 +8,7 @@ const YourPage = (): JSX.Element => {
   const [certificates, setCertificates] = useState<any>([]);
   const { push } = useRouter();
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async (): Promise<void> => {
       const tokenString = getAuthTokenCookie();
       const parseToken = tokenString && JSON.parse(tokenString);

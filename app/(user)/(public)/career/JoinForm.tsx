@@ -666,6 +666,7 @@ interface FormData {
 const JoinForm: React.FC = () => {
   const country = getCookie('country') as MuiTelInputCountry;
   const [isClient, setIsClient] = useState<boolean>(false);
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',

@@ -93,7 +93,7 @@ setisattend(isAttendArray)
     const fetchData = async () => {
       const tokenString: string | null = getAuthTokenCookie();
 
-      console.log(tokenString);
+   
       const parsetoken = tokenString && JSON.parse(tokenString);
       const primarykey = `${parsetoken?.user?.id}${id}`;
 
@@ -106,7 +106,7 @@ setisattend(isAttendArray)
           `http://promech-backend.addictaco.com/api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
         );
         const datares = await response.json();
-        console.log(datares?.data)
+        console.log(datares)
         if (datares?.data?.length>0&&datares?.data[0]?.attributes?.isBooking==true) {
           setisbooking(1);
         }else if(datares?.data?.length==0){

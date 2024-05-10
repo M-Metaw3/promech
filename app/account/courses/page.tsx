@@ -191,7 +191,7 @@ const AccountOverview = (): JSX.Element => {
   const [error, setError] = useState<boolean>(false);
   const { push } = useRouter();
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
         const tokenString: string | null = getAuthTokenCookie();

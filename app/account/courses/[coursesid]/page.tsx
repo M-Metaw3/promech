@@ -832,7 +832,7 @@ const Tracks = ({ params }: { params: { coursesid: string } }) => {
   const [taskanswer, settaskanswer] = useState<any>([]);
 
   const [isChecked, setIsChecked] = useState(false);
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async () => {
       localStorage.setItem("courseid",params.coursesid)
 
@@ -1047,7 +1047,7 @@ const doesLessonExist = (lessonId: string) => {
   return false;
 }
 
-  useEffect(() => {
+React.useLayoutEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`
         http://promech-backend.addictaco.com/api/courses/${params.coursesid}/?populate=imgSrc&populate=chapters&populate=chapters.lessons&populate=userimage
@@ -1060,7 +1060,7 @@ const doesLessonExist = (lessonId: string) => {
     fetchData();
   }, []);
 console.log(course?.attributes?.chapters?.data)
-  useEffect(() => {
+React.useLayoutEffect(() => {
     const fetchData = async () => {
       const tokenString = getAuthTokenCookie();
 
@@ -1083,7 +1083,7 @@ console.log(course?.attributes?.chapters?.data)
     fetchData();
   }, []);
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async () => {
       const tokenString = getAuthTokenCookie();
 
@@ -1115,7 +1115,7 @@ console.log(course?.attributes?.chapters?.data)
 
 
 
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async () => {
       const tokenString = getAuthTokenCookie();
 

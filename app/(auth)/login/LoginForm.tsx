@@ -28,6 +28,8 @@ const LoginPage = () => {
         password : ''
     });
 
+    const [loading, setloading] = useState(false);
+
     console.log(setAuthTokenCookie)
 
     const [showPassword, setShowPassword] = useState(false);
@@ -50,6 +52,7 @@ const LoginPage = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         try {
+            setloading(true)
             const response = await axios.post('http://promech-backend.addictaco.com/api/auth/local', formData);
             console.log(response)
             if(response.status==200){
@@ -69,6 +72,8 @@ const LoginPage = () => {
         } catch (error:any) {
             // console.error(error.response.data.error.message);
             toast.error(error?.response?.data?.error?.message);
+        }finally{
+            setloading(false)
         }
     }
 
@@ -112,6 +117,7 @@ const LoginPage = () => {
                     type='submit'
                     sx={{ fontWeight: 400, paddingX: 7, paddingY: 1.5 }}
                     onClick={handleSubmit}
+                    disabled={loading}
                 >
                     Sign in
                 </Button>

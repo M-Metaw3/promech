@@ -170,12 +170,16 @@ console.log(courseid)
         Submit
       </Button>
      {success==1?(
-      <Alert variant="filled" severity="success">
+      <Alert  sx={{
+        margin:'10px'
+  }} variant="filled" severity="success">
       Thank you 
     </Alert>
      ):success==2?(
-      <Alert variant="filled" severity="error">
-  This is a filled error
+      <Alert   sx={{
+        margin:'10px'
+  }}  variant="filled"  severity="error">
+YOU ALREADY COMPLETE SURVEY
 </Alert>
      ):''}
    

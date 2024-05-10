@@ -33,7 +33,7 @@ console.log(blog.attributes)
             <Stack bgcolor='#F6F6F6' padding={4} gap={3}>
                 <Typography variant='h5' fontSize='24px' fontWeight={600} color='text.primary'>{blog?.attributes?.title}</Typography>
                 <Typography component='span' fontSize='12px' fontWeight={600} color='#676767'>
-                    {blog?.attributes?.details} &nbsp; &nbsp; .  &nbsp; &nbsp;  {moment(blog?.attributes?.createdAt).clone()} min read
+                    {blog?.attributes?.details} &nbsp; &nbsp; .  &nbsp; &nbsp;  {moment.duration(moment().diff(moment(blog?.attributes?.createdAt))).humanize()} ago
                    
                 </Typography>
             </Stack>

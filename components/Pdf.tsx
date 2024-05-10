@@ -170,13 +170,13 @@ export default function RecipeReviewCard({ certificate }: RecipeReviewCardProps)
         </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
+     { certificate?.attributes?.pdf?.data?.attributes?.url &&  <IconButton
           component={Link}
           href={certificate?.attributes?.pdf?.data?.attributes?.url ? `http://promech-backend.addictaco.com${certificate?.attributes?.pdf?.data?.attributes?.url}` : ''}
           aria-label="share"
         >
           <CloudDownloadIcon />
-        </IconButton>
+        </IconButton>}
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

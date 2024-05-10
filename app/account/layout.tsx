@@ -64,7 +64,7 @@ export default function UserAccountLayout({ children }: { children: React.ReactN
 		}
 	]
 	const { push } = useRouter();
-React.useEffect(()=>{
+React.useLayoutEffect (()=>{
 	const tokenString =  getAuthTokenCookie();
 	console.log(tokenString)
 	if (!tokenString) {
@@ -86,7 +86,7 @@ React.useEffect(()=>{
 
 
 
-React.useEffect(() => {
+React.useLayoutEffect(() => {
 	const fetchData = async () => {
 	  try {
 		const tokenString = getAuthTokenCookie();
@@ -98,14 +98,13 @@ React.useEffect(() => {
 		}
   
 		const parsetoken = JSON.parse(tokenString);
-		console.log(parsetoken.jwt);
+		console.log(parsetoken);
   
 		const response = await fetch("http://promech-backend.addictaco.com/api/users/me/?populate=profile&populate=resume", {
 		  headers: {
 			Authorization: `Bearer ${parsetoken.jwt}`,
 		  },
 		});
-  
 		if (!response.ok) {
 		  // Handle non-successful response (e.g., unauthorized)
 		  console.error(`Fetch failed with status: ${response.status}`);
@@ -113,6 +112,7 @@ React.useEffect(() => {
 		}
   
 		const datares = await response.json();
+		console.log(datares)
 		setimage(datares?.profile?.url);
 	  } catch (error) {
 		// Handle any other errors that might occur during the fetch

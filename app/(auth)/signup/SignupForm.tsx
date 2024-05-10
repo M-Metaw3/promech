@@ -296,6 +296,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { setAuthTokenCookie, getAuthTokenCookie } from '../../../utils/auth';
+import firebase from '../../otp/firebase ';
 
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
@@ -329,10 +330,14 @@ const SignupForm: React.FC = () => {
   }, []);
 
   const country = getCookie('country') as MuiTelInputCountry;
+  const [verifications,  setverifications] = useState<boolean>(false);
 
   const [isClient, setIsClient] = useState<boolean>(false);
   const [isError, setisError] = useState<string>("");
+  const [loading, setloading] = useState<boolean>(false);
 
+  const [otp, setOtp] = useState('');
+  const [verificationId, setVerificationId] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     username: '',
     email: '',
@@ -349,11 +354,40 @@ const SignupForm: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+  // const handleSendOtp = async () => {
+  //   console.log(formData.phonenumber)
+  //   let cleanedPhoneNumber =formData.phonenumber.replace(/\s/g, '');
+  //   console.log(cleanedPhoneNumber)
 
-  const toggleShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
+  //   try {
+  //     const result = await firebase.auth().signInWithPhoneNumber(`${cleanedPhoneNumber}`, new firebase.auth.RecaptchaVerifier('recaptcha-container'));
+  //     setVerificationId(result.verificationId);
+  //     console.log(result)
+  //   } catch (error:any) {
+  //     console.error('Error sending OTP:');
+  //   }
+  // };
+
+  // const handleVerifyOtp = async () => {
+  //   try {
+  //     if (verificationId) {
+  //       const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, otp);
+  //       await firebase.auth().signInWithCredential(credential);
+  //       setverifications(true)
+  //       console.log('OTP Verified successfully!');
+  //       setVerificationId("")
+
+  //     } else {
+  //       console.error('Verification ID is missing.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error verifying OTP:');
+  //   }
+  // };
+  // const toggleShowPassword = () => setShowPassword((show) => !show);
+  // const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
+  //   event.preventDefault();
+  // };
 
   const handleChange = (e: any) => {
     setFormData({
@@ -366,23 +400,26 @@ const SignupForm: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // if (!verifications) {
+    //   toast.warn("You must verify your phone number before signing up.");
+    //   return;
+    // }
     try {
+      setloading(true)
       const response = await axios.post('http://promech-backend.addictaco.com/api/auth/local/register', formData);
 
       if (response.status == 200) {
         setTimeout(() => {
           push('/login');
-        }, 4000)
-        toast.success('registration successfully please loggin in wait to redirect');
-      } else {
-        // toast.error('Error submitting data');
-      }
+        }, 2000)
+      return  toast.success('registration successfully please loggin in wait to redirect');
+      } 
 
       if (response.status == 400) {
         // toast.success('registration ');
         console.log("aaaaaaaaaaaaaaaaaaaaa");
       } else {
-        // toast.error('Error submitting data');
+        toast.error('Error submitting data');
       }
 
       // Clear form fields
@@ -396,10 +433,13 @@ const SignupForm: React.FC = () => {
         gender: "",
         fullusername: ''
       });
+    
       // Perform any additional actions or redirects
     } catch (error: any) {
       setisError(error?.response?.data?.error?.message);
       // Handle error
+    }finally {
+      setloading(false)
     }
   }
 
@@ -430,7 +470,7 @@ const SignupForm: React.FC = () => {
         <TextField
           name='email' placeholder='Enter your Email address' fullWidth type='email'
           value={formData.email} onChange={handleChange} required
-          inputProps={{ minLength: 5, maxLength: 20 }}
+          inputProps={{ minLength: 5, maxLength: 40 }}
         />
       </FormControl>
       <FormControl variant="standard" fullWidth>
@@ -444,7 +484,11 @@ const SignupForm: React.FC = () => {
         />
       </FormControl>
       <FormControl variant="standard" fullWidth>
-        <FormLabel htmlFor="email">Phone Number</FormLabel>
+     {verifications&&
+  <Alert variant="filled" severity="success">
+  This is a filled success Alert.
+</Alert>}
+        <FormLabel   htmlFor="email">Phone Number</FormLabel>
         <MuiTelInput
           value={formData.phonenumber} fullWidth required
           inputProps={{ minLength: 10, maxLength: 20 }}
@@ -461,6 +505,15 @@ const SignupForm: React.FC = () => {
           excludedCountries={['IL']}
           defaultCountry={country}
         />
+        {/* <button onClick={handleSendOtp}>Send OTP</button>
+        {verificationId && (
+        <div>
+          <label>OTP:</label>
+          <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />
+          <button onClick={handleVerifyOtp}>Verify OTP</button>
+        </div>
+      )} */}
+      <div id="recaptcha-container"></div>
       </FormControl>
       <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel id="job-status-label">Gender</InputLabel>
@@ -491,8 +544,8 @@ const SignupForm: React.FC = () => {
           InputProps={{
             endAdornment: <IconButton
               aria-label="toggle password visibility"
-              onClick={toggleShowPassword}
-              onMouseDown={handleMouseDownPassword}
+              // onClick={toggleShowPassword}
+              // onMouseDown={handleMouseDownPassword}
               edge="end" type='button'
             >
               {showPassword ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
@@ -500,11 +553,22 @@ const SignupForm: React.FC = () => {
           }}
         />
       </FormControl>
-      <Button variant='contained'
+      {/* <Button variant='contained'
         type='submit' fullWidth
         sx={{ fontWeight: 400, paddingX: 7, paddingY: 1.5 }}
       >
         Create
+        
+      </Button> */}
+            {/* <Button variant='contained' type='submit' fullWidth disabled={!verifications}
+        sx={{ fontWeight: 400, paddingX: 7, paddingY: 1.5 }}
+      >
+        Create Account
+      </Button> */}
+      <Button variant='contained' disabled={loading}  type='submit' fullWidth 
+        sx={{ fontWeight: 400, paddingX: 7, paddingY: 1.5 }}
+      >
+        Create Account
       </Button>
       <FormControlLabel
         label={<>
