@@ -1,11 +1,11 @@
 "use client"
-import React from 'react';
+import React, { useState, useEffect ,useLayoutEffect} from 'react';
 import Image from 'next/image';
 import { Box, Container, Grid, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
 import { fonts } from '@/components/ThemeRegistry/variables';
 import Executives from './Executives';
 
-const AboutPage = async() => {
+const AboutPage = () => {
     const executives = [
 		{
 			name: 'Khaled Abo El-Fetouh',
@@ -114,8 +114,28 @@ const AboutPage = async() => {
 		}
 	];
 
-
-
+    const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+  
+    useLayoutEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://promech-backend.addictaco.com/api/about-uses?populate=image');
+          const jsonData = await response.json();
+          console.log(jsonData)
+          setData(jsonData ?? null);
+        } catch (error) {
+          console.error('Fetch error:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    if (loading) return <div>Loading...</div>;
+console.log(data)
     // const response = await fetch(`http://promech-backend.addictaco.comapi/about-uses?populate=image`,{
 
     // next:{
@@ -125,21 +145,24 @@ const AboutPage = async() => {
     // const data = await response.json() || []
     // const dataapi=  await data?.data[0]?.attributes
     // console.log(dataapi)
-    let data = null;
+
+
+
+    // let data = null;
   
-    try {
-      const response = await fetch(`http://promech-backend.addictaco.com/api/about-uses?populate=image`,{
-        next:{
-        revalidate: 0
-    }
-      });
+    // try {
+    //   const response = await fetch(`http://promech-backend.addictaco.com/api/about-uses?populate=image`,{
+    //     next:{
+    //     revalidate: 0
+    // }
+    //   });
       
-        const jsonData = await response.json();
-        data = jsonData ?? null; // Set null if data is not present or if any other optional chaining fails
+    //     const jsonData = await response.json();
+    //     data = jsonData ?? null; // Set null if data is not present or if any other optional chaining fails
    
-    } catch (error :any) {
-      console.error('Fetch error:', error);
-    }
+    // } catch (error :any) {
+    //   console.error('Fetch error:', error);
+    // }
 
     return (
  <div>
@@ -159,7 +182,7 @@ const AboutPage = async() => {
                        
                         </Typography>
                         <Typography   style={{ 
-    maxWidth: "660px", 
+    maxWidth: "660px    ", 
     overflowWrap: "break-word", 
     wordWrap: "break-word" 
   }} color='#000' fontWeight={700} fontSize='18px' textAlign='justify' word-wrap= "break-word" lineHeight='45px'   maxWidth="300px" >
@@ -209,7 +232,11 @@ const AboutPage = async() => {
                             sx={{ transform: 'scaleX(-1)' }}
                         />
                         <Stack gap={3} >
-                            <Typography variant='h3' fontWeight={600} color='primary.main'>
+                            <Typography variant='h3'  style={{ 
+    maxWidth: "660px", 
+    overflowWrap: "break-word", 
+    wordWrap: "break-word" 
+  }}  fontWeight={600} color='primary.main'>
                             
                             {data?.data&&data?.data[1]&&data?.data[1]?.attributes?data?.data[1]?.attributes?.question:"What do we do?"}
                             
