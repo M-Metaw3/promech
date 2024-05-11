@@ -23,7 +23,7 @@ const UserFooter = () => {
         },
     ];
 
-    const academy = [
+    // const academy = [
         // {
         //     name: 'All Tracks',
         //     href: 'tracks'
@@ -40,9 +40,9 @@ const UserFooter = () => {
         //     name: 'How it Works',
         //     href: 'how'
         // }
-    ];
+    // ];
 
-    const company = [
+    // const company = [
         // {
         //     name: 'Who We Are',
         //     href: 'who'
@@ -59,7 +59,7 @@ const UserFooter = () => {
         //     name: 'FAQ',
         //     href: 'faq'
         // }
-    ]
+    // ]
 
     return (
         <Stack component='footer' position='relative' color='#FFF' bgcolor='primary.main' paddingY={7} paddingX={{ xs: 1, xl: 0 }} zIndex={1}>
@@ -76,21 +76,21 @@ const UserFooter = () => {
                     </Grid>
                     <Grid item xs={6} sm={6} md={2.5} lg={2} display='flex' flexDirection='column' gap={1.5} marginTop='30px'>
                         {/* <Typography fontSize='18px' fontWeight='bold'>Academy</Typography> */}
-                        {academy.map(link =>
+                        {/* {academy.map(link =>
                             <Button key={link.name} variant='text' color='inherit' size='large'
                                 component='a' href={link.href}
                                 sx={{ fontSize: '18px', justifyContent: 'flex-start', paddingInlineStart: 0 }}
                             >{link.name}</Button>
-                        )}
+                        )} */}
                     </Grid>
                     <Grid item xs={6} sm={6} md={2.5} lg={2} display='flex' flexDirection='column' gap={1.5} marginTop='30px'>
                         {/* <Typography fontSize='18px' fontWeight='bold'>Company</Typography> */}
-                        {company.map(link =>
+                        {/* {company.map(link =>
                             <Button key={link.name} variant='text' color='inherit' size='large'
                                 component='a' href={link.href}
                                 sx={{ fontSize: '18px', justifyContent: 'flex-start', paddingInlineStart: 0 }}
                             >{link.name}</Button>
-                        )}
+                        )} */}
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} component='ul' display='flex' flexDirection='column' gap={2} marginTop='30px'>
                         <Typography fontSize='18px' fontWeight='bold'>Follow us on</Typography>
