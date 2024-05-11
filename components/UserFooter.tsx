@@ -24,41 +24,41 @@ const UserFooter = () => {
     ];
 
     const academy = [
-        {
-            name: 'All Tracks',
-            href: 'tracks'
-        },
-        {
-           name:  'Courses',
-           href: 'courses'
-        },
-        {
-            name: 'Admission',
-            href: 'admission'
-        },
-        {
-            name: 'How it Works',
-            href: 'how'
-        }
+        // {
+        //     name: 'All Tracks',
+        //     href: 'tracks'
+        // },
+        // {
+        //    name:  'Courses',
+        //    href: 'courses'
+        // },
+        // {
+        //     name: 'Admission',
+        //     href: 'admission'
+        // },
+        // {
+        //     name: 'How it Works',
+        //     href: 'how'
+        // }
     ];
 
     const company = [
-        {
-            name: 'Who We Are',
-            href: 'who'
-        },
-        {
-           name:  'About Us',
-           href: 'about'
-        },
-        {
-            name: 'Contact Us',
-            href: 'contact'
-        },
-        {
-            name: 'FAQ',
-            href: 'faq'
-        }
+        // {
+        //     name: 'Who We Are',
+        //     href: 'who'
+        // },
+        // {
+        //    name:  'About Us',
+        //    href: 'about'
+        // },
+        // {
+        //     name: 'Contact Us',
+        //     href: 'contact'
+        // },
+        // {
+        //     name: 'FAQ',
+        //     href: 'faq'
+        // }
     ]
 
     return (
@@ -75,7 +75,7 @@ const UserFooter = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={6} sm={6} md={2.5} lg={2} display='flex' flexDirection='column' gap={1.5} marginTop='30px'>
-                        <Typography fontSize='18px' fontWeight='bold'>Academy</Typography>
+                        {/* <Typography fontSize='18px' fontWeight='bold'>Academy</Typography> */}
                         {academy.map(link =>
                             <Button key={link.name} variant='text' color='inherit' size='large'
                                 component='a' href={link.href}
@@ -84,7 +84,7 @@ const UserFooter = () => {
                         )}
                     </Grid>
                     <Grid item xs={6} sm={6} md={2.5} lg={2} display='flex' flexDirection='column' gap={1.5} marginTop='30px'>
-                        <Typography fontSize='18px' fontWeight='bold'>Company</Typography>
+                        {/* <Typography fontSize='18px' fontWeight='bold'>Company</Typography> */}
                         {company.map(link =>
                             <Button key={link.name} variant='text' color='inherit' size='large'
                                 component='a' href={link.href}
