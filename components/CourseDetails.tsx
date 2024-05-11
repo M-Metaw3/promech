@@ -59,11 +59,11 @@ type CourseProps = {
 };
 
 const CourseDetails: React.FC<CourseProps> = ({ course, id }: CourseProps) => {
-  const [isbooking, setisbooking] = useState<number>(3);
+  const [isbooking, setisbooking] = useState<any>([]);
   const [isattend, setisattend] = useState<any[]>([]);
   const [istext, setistext] = useState<string>('');
 console.log(course)
-  useEffect(() => {
+ React.useLayoutEffect(() => {
     const fetchData = async () => {
       const tokenString: string | null = getAuthTokenCookie();
 
@@ -103,18 +103,18 @@ setisattend(isAttendArray)
         return;
       } else {
         const response = await fetch(
-          `http://promech-backend.addictaco.com/api/bookings?filters[isBooking]=true&filters[primarykey]=${primarykey}`
+          `http://promech-backend.addictaco.com/api/bookings?filters[primarykey]=${primarykey}`
         );
         const datares = await response.json();
         console.log(datares)
-        if (datares?.data?.length>0&&datares?.data[0]?.attributes?.isBooking==true) {
-          setisbooking(1);
-        }else if(datares?.data?.length==0){
-          setisbooking(2);
-        }else{
-          setisbooking(3);
+        // if (datares?.data?.length>0&&datares?.data[0]?.attributes?.isBooking==true) {
+          setisbooking(datares);
+        // }else if(datares?.data?.length==0){
+        //   setisbooking(2);
+        // }else{
+        //   setisbooking(3);
 
-        }
+        // }
       }
     };
     fetchData();
@@ -298,7 +298,7 @@ setisattend(isAttendArray)
                 ))}
               </Fragment>
             ))}
-{!isbooking ? (
+{/* {!isbooking ? (
   <Button component={Link} href='/account/courses' variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
     You are already enrolled in this course. Check your courses.
   </Button>
@@ -317,8 +317,18 @@ setisattend(isAttendArray)
 //     Join Course
 //   </Button>
 // )
-}
+} */}
 
+
+{isbooking && isbooking.data && isbooking.data.length === 0 ? (
+  <Button onClick={handleSubmit} variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
+    Join Course
+  </Button>
+) : (
+  <Button disabled variant="contained" size="large" fullWidth sx={{ padding: '13px 24px' }}>
+    {isbooking && isbooking.data && isbooking.data[0] && isbooking.data[0].attributes && isbooking.data[0].attributes.isBooking ? 'Booked' : 'Pending'}
+  </Button>
+)}
 
 
 
